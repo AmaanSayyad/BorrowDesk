@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {Script, console2} from "forge-std/Script.sol";
+import {BorrowDeskMarket} from "../src/BorrowDeskMarket.sol";
+import {BorrowDeskLens} from "../src/BorrowDeskLens.sol";
+
+/// @notice Deploy V2 market + lens and list all RH Stock Token markets.
+contract DeployV2 is Script {
+    address constant USDG = 0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168;
+
+    struct Listing {
+        address token;
+        address feed;
+        uint16 ltv;
+        uint16 liq;
+        uint16 bonus;
+    }
+
+    function run() external {
+        uint256 pk = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(pk);
+
+        BorrowDeskMarket market = new BorrowDeskMarket(USDG);
+        BorrowDeskLens lens = new BorrowDeskLens(address(market));
+
+        Listing[] memory L = _listings();
+        for (uint256 i = 0; i < L.length; i++) {
+            market.listMarket(L[i].token, L[i].feed, L[i].ltv, L[i].liq, L[i].bonus);
+        }
+
+        console2.log("MARKET", address(market));
+        console2.log("LENS", address(lens));
+        console2.log("LISTED", L.length);
+
+        vm.stopBroadcast();
+    }
+
+    function _listings() internal pure returns (Listing[] memory L) {
+        L = new Listing[](29);
+        L[0] = Listing(0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC, 0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15, 6000, 7500, 500);
+        L[1] = Listing(0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9, 0x6B22A786bAa607d76728168703a39Ea9C99f2cD0, 6000, 7500, 500);
+        L[2] = Listing(0x322F0929c4625eD5bAd873c95208D54E1c003b2d, 0x4A1166a659A55625345e9515b32adECea5547C38, 5000, 6500, 500);
+        L[3] = Listing(0x117cc2133c37B721F49dE2A7a74833232B3B4C0C, 0x319724394D3A0e3669269846abE664Cd621f9f6A, 6500, 8000, 500);
+        L[4] = Listing(0x12f190a9F9d7D37a250758b26824B97CE941bF54, 0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C, 6000, 7500, 500);
+        L[5] = Listing(0xe93237C50D904957Cf27E7B1133b510C669c2e74, 0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E, 6000, 7500, 500);
+        L[6] = Listing(0xc0D6457C16Cc70d6790Dd43521C899C87ce02f35, 0x7C38C00C30BEe9378381E7B6135d7283356D71b1, 5500, 7000, 500);
+        L[7] = Listing(0x2e0847E8910a9732eB3fb1bb4b70a580ADAD4FE3, 0xF6f373a037c30F0e5010d854385cA89185AE638b, 6000, 7500, 500);
+        L[8] = Listing(0x86923f96303D656E4aa86D9d42D1e57ad2023fdC, 0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72, 5500, 7000, 500);
+        L[9] = Listing(0x47F93d52cBeC7C6D2CfC080e154002370a60dAEA, 0xB4106147E8cce40b7d46124090d373A71b70f87D, 6000, 7500, 500);
+        L[10] = Listing(0xad25Ac6C84D497db898fa1E8387bf6Af3532a1c4, 0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984, 5500, 7000, 500);
+        L[11] = Listing(0x6330D8C3178a418788dF01a47479c0ce7CCF450b, 0xA3a468A452940B7D6b69991207B508c609a98Ef2, 5000, 6500, 500);
+        L[12] = Listing(0xdF0992E440dD0be65BD8439b609d6D4366bf1CB5, 0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a, 4500, 6000, 500);
+        L[13] = Listing(0x941AE714EC6D8130c7B75d67160Ca08f1e7d11Dd, 0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b, 5500, 7000, 500);
+        L[14] = Listing(0x1b0E319c6A659F002271B69dB8A7df2F911c153E, 0x27C71df6A64fB476468EdF256CF72c038baB5B67, 3500, 5000, 500);
+        L[15] = Listing(0xc72b96e0E48ecd4DC75E1e45396e26300BC39681, 0x3f390C5C24628Ac7C489515402235FeAD71D1913, 5500, 7000, 500);
+        L[16] = Listing(0x558378E000D634A36593E338eBacdd6207640EfE, 0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb, 4000, 5500, 500);
+        L[17] = Listing(0xec262a75e413fAfD0dF80480274532C79D42da09, 0x396118bdFB181e6240E74D243F266B061c0edc3D, 4000, 5500, 500);
+        L[18] = Listing(0xfF080c8ce2E5feadaCa0Da81314Ae59D232d4afD, 0x425EEFdCf05ed6526C3cE61Af99429A228a6d596, 5500, 7000, 500);
+        L[19] = Listing(0x894E1EC2D74FFE5AEF8Dc8A9e84686acCB964F2A, 0x820ABedFF239034956B7A9d2F0a331f9F075eB4c, 5000, 6500, 500);
+        L[20] = Listing(0x3b14C39E89D60D627b42a1A4CA45b5bb45Fc12e2, 0x045477BF65Aef6f4F2386ad0164579e48381CC74, 4500, 6000, 500);
+        L[21] = Listing(0xB90A19fF0Af67f7779afF50A882A9CfF42446400, 0xfb133Fa4B7b385802B693a293606682Df47109A3, 5000, 6500, 500);
+        L[22] = Listing(0x4a0E65A3EcceC6dBe60AE065F2e7bb85Fae35eEa, 0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb, 4500, 6000, 500);
+        L[23] = Listing(0x58FfE4a942d3885bAa22D7520691F611EF09e7AA, 0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F, 6000, 7500, 500);
+        L[24] = Listing(0xd917B029C761D264c6A312BBbcDA868658eF86a6, 0xA994d3684e8400A6c8078226925779FdeE682DD9, 4500, 6000, 500);
+        L[25] = Listing(0xD5f3879160bc7c32ebb4dC785F8a4F505888de68, 0x80901d846d5D7B030F26B480776EE3b29374C2ae, 6500, 8000, 500);
+        L[26] = Listing(0x411eFb0E7f985935DAec3D4C3ebaEa0d0AD7D89f, 0x209b73908e92Ae021826eD79609845451Ecba2ce, 5500, 7000, 500);
+        L[27] = Listing(0xa30FA36Db767ad9eD3f7a60fC79526fB4d56D344, 0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c, 5000, 6500, 500);
+        L[28] = Listing(0x92FD66527192E3e61d4DDd13322Aa222DE86F9B5, 0xa0DF4ee0fFf975306345875E3548Fcc519577A11, 7000, 8500, 500);
+    }
+}
