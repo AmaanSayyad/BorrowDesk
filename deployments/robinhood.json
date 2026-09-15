@@ -1,0 +1,263 @@
+{
+  "chainId": 4663,
+  "network": "Robinhood Chain",
+  "market": "0x17452DAB5976B770107c126fBC92aD746a3C0200",
+  "usdg": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+  "usdgDecimals": 6,
+  "owner": "0x1881Dfd2b29536F054AA0b0A4966856290388Cc2",
+  "rpc": "https://robinhood.drpc.org",
+  "explorer": "https://robinhoodchain.blockscout.com",
+  "marketUrl": "https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200",
+  "sourcify": "https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d",
+  "deployTx": "0x011533d69bab32b19c066e45547672cdd4697043314389f223252e1c477c3675",
+  "approveTx": "0xbc3a0832c76e8886d24860c938751cccac2b6153e1cab2c640b4f3206550960a",
+  "addLiquidityTx": "0xb67f1febd164668f63dbdd0cbd8491163c603612f0bcefe3b9dc81b78ad4eb11",
+  "borrowTx": "0x6830ceef8268",
+  "listed": [
+    "NVDA",
+    "AAPL",
+    "TSLA",
+    "SPY",
+    "AMZN",
+    "MSFT",
+    "META",
+    "GOOGL",
+    "AMD",
+    "ASML",
+    "BABA",
+    "COIN",
+    "CRCL",
+    "DELL",
+    "GME",
+    "INTC",
+    "IONQ",
+    "MSTR",
+    "MU",
+    "PLTR",
+    "RKLB",
+    "SNDK",
+    "SPCX",
+    "TSM",
+    "USAR",
+    "QQQ",
+    "SLV",
+    "USO",
+    "SGOV"
+  ],
+  "feeds": {
+    "NVDA": "0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
+    "AAPL": "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
+    "TSLA": "0x4A1166a659A55625345e9515b32adECea5547C38",
+    "SPY": "0x319724394D3A0e3669269846abE664Cd621f9f6A",
+    "AMZN": "0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C",
+    "MSFT": "0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E",
+    "META": "0x7C38C00C30BEe9378381E7B6135d7283356D71b1",
+    "GOOGL": "0xF6f373a037c30F0e5010d854385cA89185AE638b",
+    "AMD": "0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72",
+    "ASML": "0xB4106147E8cce40b7d46124090d373A71b70f87D",
+    "BABA": "0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984",
+    "COIN": "0xA3a468A452940B7D6b69991207B508c609a98Ef2",
+    "CRCL": "0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a",
+    "DELL": "0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b",
+    "GME": "0x27C71df6A64fB476468EdF256CF72c038baB5B67",
+    "INTC": "0x3f390C5C24628Ac7C489515402235FeAD71D1913",
+    "IONQ": "0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb",
+    "MSTR": "0x396118bdFB181e6240E74D243F266B061c0edc3D",
+    "MU": "0x425EEFdCf05ed6526C3cE61Af99429A228a6d596",
+    "PLTR": "0x820ABedFF239034956B7A9d2F0a331f9F075eB4c",
+    "RKLB": "0x045477BF65Aef6f4F2386ad0164579e48381CC74",
+    "SNDK": "0xfb133Fa4B7b385802B693a293606682Df47109A3",
+    "SPCX": "0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb",
+    "TSM": "0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F",
+    "USAR": "0xA994d3684e8400A6c8078226925779FdeE682DD9",
+    "QQQ": "0x80901d846d5D7B030F26B480776EE3b29374C2ae",
+    "SLV": "0x209b73908e92Ae021826eD79609845451Ecba2ce",
+    "USO": "0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c",
+    "SGOV": "0xa0DF4ee0fFf975306345875E3548Fcc519577A11"
+  },
+  "riskBands": {
+    "NVDA": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "AAPL": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "TSLA": {
+      "ltvBps": 5000,
+      "liqBps": 6500,
+      "bonusBps": 500
+    },
+    "SPY": {
+      "ltvBps": 6500,
+      "liqBps": 8000,
+      "bonusBps": 500
+    },
+    "AMZN": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "MSFT": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "META": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "GOOGL": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "AMD": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "ASML": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "BABA": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "COIN": {
+      "ltvBps": 5000,
+      "liqBps": 6500,
+      "bonusBps": 500
+    },
+    "CRCL": {
+      "ltvBps": 4500,
+      "liqBps": 6000,
+      "bonusBps": 500
+    },
+    "DELL": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "GME": {
+      "ltvBps": 3500,
+      "liqBps": 5000,
+      "bonusBps": 500
+    },
+    "INTC": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "IONQ": {
+      "ltvBps": 4000,
+      "liqBps": 5500,
+      "bonusBps": 500
+    },
+    "MSTR": {
+      "ltvBps": 4000,
+      "liqBps": 5500,
+      "bonusBps": 500
+    },
+    "MU": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "PLTR": {
+      "ltvBps": 5000,
+      "liqBps": 6500,
+      "bonusBps": 500
+    },
+    "RKLB": {
+      "ltvBps": 4500,
+      "liqBps": 6000,
+      "bonusBps": 500
+    },
+    "SNDK": {
+      "ltvBps": 5000,
+      "liqBps": 6500,
+      "bonusBps": 500
+    },
+    "SPCX": {
+      "ltvBps": 4500,
+      "liqBps": 6000,
+      "bonusBps": 500
+    },
+    "TSM": {
+      "ltvBps": 6000,
+      "liqBps": 7500,
+      "bonusBps": 500
+    },
+    "USAR": {
+      "ltvBps": 4500,
+      "liqBps": 6000,
+      "bonusBps": 500
+    },
+    "QQQ": {
+      "ltvBps": 6500,
+      "liqBps": 8000,
+      "bonusBps": 500
+    },
+    "SLV": {
+      "ltvBps": 5500,
+      "liqBps": 7000,
+      "bonusBps": 500
+    },
+    "USO": {
+      "ltvBps": 5000,
+      "liqBps": 6500,
+      "bonusBps": 500
+    },
+    "SGOV": {
+      "ltvBps": 7000,
+      "liqBps": 8500,
+      "bonusBps": 500
+    }
+  },
+  "borrowApr": 0.05,
+  "maxOracleDelayDays": 4,
+  "liquidityUsdgRaw": "5034918",
+  "liquidityUsdg": 5.034918,
+  "position": {
+    "borrower": "0x1881Dfd2b29536F054AA0b0A4966856290388Cc2",
+    "collateralUsdApprox": 0.5327,
+    "debtUsdg": 0.287631,
+    "healthy": true,
+    "deposited": [
+      "NVDA",
+      "AAPL"
+    ]
+  },
+  "morphoDemand": {
+    "block": 78677903,
+    "asOfUtc": "2026-10-03 00:58 UTC",
+    "usdgTotalSupplyUsd": 700700000,
+    "stockUsdgLentUsd": 1510000,
+    "stockUsdgBorrowedPct": 96.6,
+    "morphoBlue": "0x9D53d5E3bd5E8d4Cbfa6DB1ca238AEA02E651010"
+  },
+  "judgeDeepLink": "/app?asset=NVDA&desk=borrow&tour=1",
+  "verifyScript": "./script/verify-claims.sh",
+  "status": "live_borrow_proven",
+  "legacyMarket": "0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d",
+  "lens": "0x025694b88DDd0A6ffaC740df4170B8EA590355cc",
+  "router": "0xcaf681a66d020601342297493863e78c959e5cb2",
+  "factory": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+  "weth": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+  "version": "v2",
+  "features": [
+    "supply_shares",
+    "utilization_apr",
+    "deposit_and_borrow",
+    "lens",
+    "get_stock_swap"
+  ]
+}
