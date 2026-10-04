@@ -38,7 +38,7 @@ export function WatchlistBar({ compact = false }: { compact?: boolean }) {
     );
   };
 
-  const selectSymbol = (symbol: string) => {
+  const openTicket = (symbol: string) => {
     window.dispatchEvent(
       new CustomEvent("borrowdesk:ticket", {
         detail: { tab: "deposit", symbol },
@@ -70,17 +70,14 @@ export function WatchlistBar({ compact = false }: { compact?: boolean }) {
             <button
               key={token.symbol}
               type="button"
-              onClick={() =>
-                on ? selectSymbol(token.symbol) : toggleWatchlist(token.symbol)
-              }
-              onContextMenu={(e) => {
-                e.preventDefault();
-                toggleWatchlist(token.symbol);
-              }}
+              onClick={() => toggleWatchlist(token.symbol)}
+              onDoubleClick={() => openTicket(token.symbol)}
               title={
-                on
-                  ? "Click to open ticket · right-click to remove"
-                  : "Add to watchlist"
+                !address
+                  ? "Connect wallet to save watchlist"
+                  : on
+                    ? "Click to remove · double-click to open ticket"
+                    : "Click to add · double-click to open ticket"
               }
               className={`chip transition ${compact ? "px-2 py-0.5 text-[11px]" : ""} ${
                 on

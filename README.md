@@ -192,7 +192,7 @@ Charts: TradingView embeds on asset pages.
 - Deposit / withdraw Stock Tokens
 - Borrow / repay USDG
 - Supply / redeem USDG (V2 supply shares)
-- Accrue interest onchain (~5% base · utilization APR on V2)
+- Interest accrues inside market actions (~5% base · utilization APR on V2)
 - Partial liquidate unhealthy accounts
 - Multi-collateral account health (HF on a **0–10** UI scale, LTV, borrow power, liq threshold)
 
@@ -458,7 +458,7 @@ Example: borrow **100 USDG** → **1 USDG** protocol fee → **99 USDG** net to 
 | 3 | Reown AppKit, LTV slider, repay receipt, desk tabs, ⌘K, oracle strip | Done |
 | 4 | V2 market: supply shares, util APR, Fund desk, Lens, Sourcify exact match | Done |
 | 5 | V1 → V2 liquidity + collateral migration · HF /10 UI · borrowdesk.fun | Done |
-| Next | Grow pool, ownership rotation, event-risk chips, liquidation bots | In progress |
+| Next | Grow pool, ownership rotation, liquidation bots | In progress |
 | Later | **1% borrow fee**, **product token launch**, audits, larger inventory, more Stock Token bands | Planned |
 
 **Explicit non-goals (buildathon):** spot trading as a venue, issuing Stock Tokens, perps, cross-chain deploy.

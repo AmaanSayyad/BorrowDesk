@@ -3,11 +3,9 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AccountLookup } from "@/components/app/AccountLookup";
-import { AccrueButton } from "@/components/app/AccrueButton";
 import { ActionPanel } from "@/components/app/ActionPanel";
 import { ActivityFeed } from "@/components/app/ActivityFeed";
 import { CommandPalette } from "@/components/app/CommandPalette";
-import { EventRiskChips } from "@/components/app/EventRiskChips";
 import { FundDesk, type FundMode } from "@/components/app/FundDesk";
 import { HealthMeter } from "@/components/app/HealthMeter";
 import { MarketsDesk } from "@/components/app/MarketsDesk";
@@ -199,7 +197,6 @@ function AppBody() {
               {desk === "risk" && (
                 <>
                   <RiskPanel />
-                  <AccrueButton />
                   <HealthMeter
                     healthFactor={m.healthFactor}
                     ltv={m.ltv}
@@ -220,7 +217,6 @@ function AppBody() {
             <SafetyChrome />
             <OracleStrip />
             <WatchlistBar compact />
-            <EventRiskChips limit={6} />
             <ActivityFeed poolUsdg={poolUsdg} />
             <PrintTape />
             <div className="flex flex-wrap gap-x-3 gap-y-1 px-1 text-xs text-rh-muted">

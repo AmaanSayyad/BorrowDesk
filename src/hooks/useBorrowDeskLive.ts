@@ -88,14 +88,6 @@ export function useBorrowDeskLive() {
     query: { enabled: ready, refetchInterval: 15_000 },
   });
 
-  const lastAccrual = useReadContract({
-    address: market,
-    abi: borrowDeskAbi,
-    functionName: "lastAccrual",
-    chainId: robinhoodChain.id,
-    query: { refetchInterval: 30_000 },
-  });
-
   const collateralReads = useReadContracts({
     contracts: LISTED_TOKENS.flatMap((token) => [
       {
@@ -222,17 +214,6 @@ export function useBorrowDeskLive() {
     [address, ensureChain, writeContractAsync],
   );
 
-  const accrue = useCallback(async () => {
-    await ensureChain();
-    return writeContractAsync({
-      chainId: robinhoodChain.id,
-      address: market,
-      abi: borrowDeskAbi,
-      functionName: "accrue",
-      args: [],
-    });
-  }, [ensureChain, writeContractAsync]);
-
   const liquidate = useCallback(
     async (borrower: `0x${string}`, symbol: string, repayAmount: number) => {
       if (!address) throw new Error("Connect wallet");
@@ -301,10 +282,7 @@ export function useBorrowDeskLive() {
     withdraw,
     borrow,
     repay,
-    accrue,
     liquidate,
-    lastAccrualSec:
-      lastAccrual.data != null ? Number(lastAccrual.data) : 0,
     switchToRobinhood: () => switchChain({ chainId: robinhoodChain.id }),
     refetch: () => {
       void health.refetch();
@@ -313,7 +291,6 @@ export function useBorrowDeskLive() {
       void totalDebtRaw.refetch();
       void usdgBal.refetch();
       void collateralReads.refetch();
-      void lastAccrual.refetch();
     },
   };
 }

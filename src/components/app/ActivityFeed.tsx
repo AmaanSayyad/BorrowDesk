@@ -1,6 +1,5 @@
 "use client";
 
-import { AccrueButton } from "@/components/app/AccrueButton";
 import { useBorrowDeskLive } from "@/hooks/useBorrowDeskLive";
 import { MAINNET } from "@/lib/deployments";
 import { formatUsd } from "@/lib/utils";
@@ -35,10 +34,6 @@ export function ActivityFeed({ poolUsdg = 0 }: { poolUsdg?: number }) {
         >
           {MAINNET.market.slice(0, 6)}…
         </a>
-      </div>
-
-      <div className="mt-3">
-        <AccrueButton />
       </div>
 
       <dl className="mt-3 grid grid-cols-2 gap-2">

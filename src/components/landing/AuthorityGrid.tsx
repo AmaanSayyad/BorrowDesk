@@ -7,7 +7,7 @@ const COLUMNS = [
       "Deposit / withdraw Stock Tokens",
       "Borrow and repay USDG",
       "See liq price before signing",
-      "Accrue interest onchain",
+      "Supply / redeem USDG shares",
     ],
   },
   {
@@ -17,7 +17,7 @@ const COLUMNS = [
     items: [
       "Price collateral via AggregatorV3",
       "Enforce LTV / liquidation bands",
-      "Accrue ~5% APR on debt",
+      "Accrue interest inside each market action",
       "Owner: list markets · seed liquidity",
     ],
   },
