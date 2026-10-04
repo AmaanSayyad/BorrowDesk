@@ -270,6 +270,15 @@ export function CommandPalette() {
         run: () => window.open(MAINNET.demoVideo, "_blank", "noopener,noreferrer"),
       },
       {
+        id: "litepaper",
+        label: "Litepaper (PDF)",
+        hint: "Technical litepaper",
+        group: "Links",
+        keywords: "litepaper paper pdf research docs",
+        icon: <IconBox>§</IconBox>,
+        run: () => window.open(MAINNET.litepaper, "_blank", "noopener,noreferrer"),
+      },
+      {
         id: "verify-page",
         label: "Verify claims",
         hint: "Onchain proof page",

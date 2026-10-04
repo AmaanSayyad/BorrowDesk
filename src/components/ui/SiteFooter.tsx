@@ -42,6 +42,11 @@ const PLATFORM: FooterLink[] = [
     external: true,
   },
   {
+    href: MAINNET.litepaper,
+    label: "Litepaper (PDF)",
+    external: true,
+  },
+  {
     href: "https://github.com/AmaanSayyad/BorrowDesk",
     label: "GitHub",
     external: true,
@@ -106,6 +111,11 @@ const COMPANY: FooterLink[] = [
   {
     href: MAINNET.demoVideo,
     label: "Demo + pitch video",
+    external: true,
+  },
+  {
+    href: MAINNET.litepaper,
+    label: "Litepaper (PDF)",
     external: true,
   },
   {
@@ -263,6 +273,15 @@ export function SiteFooter() {
                 style={{ color: "#CCFF00" }}
               >
                 Demo video
+              </a>
+              <a
+                href={MAINNET.litepaper}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#110e08] px-3 py-1.5 text-[13px] font-medium ring-1 ring-black/25"
+                style={{ color: "#CCFF00" }}
+              >
+                Litepaper
               </a>
               <a
                 href="https://github.com/AmaanSayyad/BorrowDesk"
