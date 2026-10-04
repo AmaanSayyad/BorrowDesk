@@ -49,8 +49,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 17. [Run locally](#run-locally)
 18. [Verify / tests](#verify--tests)
 19. [Repo layout](#repo-layout)
-20. [Security notes](#security-notes)
-21. [License](#license)
+20. [License](#license)
 
 ---
 
@@ -222,13 +221,15 @@ Public addresses only. **Never commit** private keys or `.env`.
 | **BorrowDeskMarket V2** | [`0x17452DAB5976B770107c126fBC92aD746a3C0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) | Live credit market · util APR · [Sourcify exact match](https://repo.sourcify.dev/4663/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
 | **BorrowDeskLens** | [`0x025694b88ddd0a6ffac740df4170b8ea590355cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) | Desk reads · [Sourcify exact match](https://repo.sourcify.dev/4663/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
 | **Legacy V1** | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) | Drained · unused · funds migrated to V2 · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
-| **Owner** | `0x1881Dfd2b29536F054AA0b0A4966856290388Cc2` | Market owner (rotate if key compromised) |
+| **Owner** | `0x1881Dfd2b29536F054AA0b0A4966856290388Cc2` | Market owner |
 | **USDG** | `0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168` | Global Dollar · 6 decimals |
 | **V2 deploy tx** | [`0xe937fb…dfa0`](https://robinhoodchain.blockscout.com/tx/0xe937fb4b81a7ac7f88e1f8bc586661e06ff296764305ff7fa88a40c91a7edfa0) | Market create |
 | **RPC (preferred)** | `https://robinhood.drpc.org` | Official Cloudflare RPC often 403s forge |
 | **Explorer** | [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com) | |
 
-### Listed collateral + feeds
+### Listed collateral + feeds (29 markets)
+
+All mainnet markets use AggregatorV3 feeds. Full machine-readable list: [`deployments/robinhood.json`](./deployments/robinhood.json).
 
 | Symbol | Token | Feed |
 |---|---|---|
@@ -236,6 +237,31 @@ Public addresses only. **Never commit** private keys or `.env`.
 | AAPL | `0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9` | `0x6B22A786bAa607d76728168703a39Ea9C99f2cD0` |
 | TSLA | `0x322F0929c4625eD5bAd873c95208D54E1c003b2d` | `0x4A1166a659A55625345e9515b32adECea5547C38` |
 | SPY | `0x117cc2133c37B721F49dE2A7a74833232B3B4C0C` | `0x319724394D3A0e3669269846abE664Cd621f9f6A` |
+| AMZN | `0x12f190a9F9d7D37a250758b26824B97CE941bF54` | `0xD5a1508ceD74c084eBf3cBe853e2C968fB2a651C` |
+| MSFT | `0xe93237C50D904957Cf27E7B1133b510C669c2e74` | `0x45C3C877C15E6BA2EBB19eA114Ea508d14C1Af2E` |
+| META | `0xc0D6457C16Cc70d6790Dd43521C899C87ce02f35` | `0x7C38C00C30BEe9378381E7B6135d7283356D71b1` |
+| GOOGL | `0x2e0847E8910a9732eB3fb1bb4b70a580ADAD4FE3` | `0xF6f373a037c30F0e5010d854385cA89185AE638b` |
+| AMD | `0x86923f96303D656E4aa86D9d42D1e57ad2023fdC` | `0x943A29E7ae51A4798823ca9eEd2ed533B2A22C72` |
+| ASML | `0x47F93d52cBeC7C6D2CfC080e154002370a60dAEA` | `0xB4106147E8cce40b7d46124090d373A71b70f87D` |
+| BABA | `0xad25Ac6C84D497db898fa1E8387bf6Af3532a1c4` | `0x62Cc8F9b5f56a33c9C8A60c8B92779f523c4E984` |
+| COIN | `0x6330D8C3178a418788dF01a47479c0ce7CCF450b` | `0xA3a468A452940B7D6b69991207B508c609a98Ef2` |
+| CRCL | `0xdF0992E440dD0be65BD8439b609d6D4366bf1CB5` | `0x6652eDf64bA3731C4F2D3ce821A0Fb1f1f6b482a` |
+| DELL | `0x941AE714EC6D8130c7B75d67160Ca08f1e7d11Dd` | `0x1C6c8cADBe02E19129c39dDB92281cE4c0bf206b` |
+| GME | `0x1b0E319c6A659F002271B69dB8A7df2F911c153E` | `0x27C71df6A64fB476468EdF256CF72c038baB5B67` |
+| INTC | `0xc72b96e0E48ecd4DC75E1e45396e26300BC39681` | `0x3f390C5C24628Ac7C489515402235FeAD71D1913` |
+| IONQ | `0x558378E000D634A36593E338eBacdd6207640EfE` | `0x22EfeC4919baf55F360E0EDee4AbEB26DE4971eb` |
+| MSTR | `0xec262a75e413fAfD0dF80480274532C79D42da09` | `0x396118bdFB181e6240E74D243F266B061c0edc3D` |
+| MU | `0xfF080c8ce2E5feadaCa0Da81314Ae59D232d4afD` | `0x425EEFdCf05ed6526C3cE61Af99429A228a6d596` |
+| PLTR | `0x894E1EC2D74FFE5AEF8Dc8A9e84686acCB964F2A` | `0x820ABedFF239034956B7A9d2F0a331f9F075eB4c` |
+| RKLB | `0x3b14C39E89D60D627b42a1A4CA45b5bb45Fc12e2` | `0x045477BF65Aef6f4F2386ad0164579e48381CC74` |
+| SNDK | `0xB90A19fF0Af67f7779afF50A882A9CfF42446400` | `0xfb133Fa4B7b385802B693a293606682Df47109A3` |
+| SPCX | `0x4a0E65A3EcceC6dBe60AE065F2e7bb85Fae35eEa` | `0xB265810950ba6c5C0Ff821c9963014a56fD8Bffb` |
+| TSM | `0x58FfE4a942d3885bAa22D7520691F611EF09e7AA` | `0x874cF94aa8eC88Fd9560094dD065f2fB3E41Fc2F` |
+| USAR | `0xd917B029C761D264c6A312BBbcDA868658eF86a6` | `0xA994d3684e8400A6c8078226925779FdeE682DD9` |
+| QQQ | `0xD5f3879160bc7c32ebb4dC785F8a4F505888de68` | `0x80901d846d5D7B030F26B480776EE3b29374C2ae` |
+| SLV | `0x411eFb0E7f985935DAec3D4C3ebaEa0d0AD7D89f` | `0x209b73908e92Ae021826eD79609845451Ecba2ce` |
+| USO | `0xa30FA36Db767ad9eD3f7a60fC79526fB4d56D344` | `0x75a9c76Ef439e2C7c2E5a34Ab105EcFe3766431c` |
+| SGOV | `0x92FD66527192E3e61d4DDd13322Aa222DE86F9B5` | `0xa0DF4ee0fFf975306345875E3548Fcc519577A11` |
 
 ### Proven onchain position (deployer · V2)
 
@@ -352,22 +378,38 @@ Design notes live in `contracts/src/BorrowDeskMarket.sol` and `contracts/README.
 
 ## Competitors
 
-| Venue | Thesis | Closest threat |
+Market map for **borrow against tokenized equities / Stock Tokens for USD (G)**. Sources: Morpho + Robinhood Earn docs, Acre / Zona product pages, Pledge / TALIS launches, Ondo + xStocks + Coinbase Morpho markets (2026).
+
+### Same chain (Robinhood Chain · 4663) - closest
+
+| Venue | What they do | How we differ |
 |---|---|---|
-| **Pledge** | Stock tokens → USDG credit | Direct twin - beat on UX + partial liq + foresight |
-| **OpenGap** | Buy tokenized stocks on discount (Solana) | Steal desk craft; they have no lending |
-| **PumpRobin** | RH Chain memecoin launchpad | Steal brand/search density |
-| **StocksCalendar** | Research desk + Hermes | Steal provenance / intel UX |
-| **Mandate** | Bounded agent trading, downside first | Steal “show risk before Borrow” |
-| **lpTOKEN** | LP → ERC-20 shares | Steal supplier / inventory craft |
+| **[Morpho](https://morpho.org)** on RH Chain | Default credit rail. Stock Tokens as collateral → borrow stables; also underpins [Robinhood Earn](https://robinhood.com/us/en/support/articles/crypto-earn/) (USDG supply via Steakhouse vaults). Deepest liquidity + institutional curators. | Generic isolated Morpho markets + vault UX. BorrowDesk is a **purpose-built equity credit desk**: multi-collateral account, equity LTV bands, util APR, Fund / Protocol / Look up, liq foresight before sign. |
+| **[Acre](https://useacre.xyz)** | Multi-collateral USDG pool vs RH Stock Tokens / ETFs. Session-aware borrow rates; supply shares; exposure caps (~50k supply). | Closest product twin. We ship a fuller **desk** (⌘K, health /10, ticket receipts, get-stock path, 29 listed feeds) and public V2 + Lens verification. |
+| **[Zona](https://www.zona.finance)** | Supply USDG or borrow vs AAPL / NVDA / META / SPCX / SPY / QQQ / SGOV. 24/5 borrow window; one equity collateral at a time. | Single-collateral positions + weekend close. BorrowDesk keeps **one multi-collateral book**, 24/7 desk UX with 4d oracle delay for equity weekends, Fund desk for inventory. |
+| **[Pledge Finance](https://arbitrum-singapore.hackquest.io/projects/Pledge-Finance-TRgoRA)** | Isolated vaults (one user × one ticker × USDG). NVDA / SPY first; stability fee; inventory-gated borrows. | Isolated per-ticker vaults vs our **shared multi-collateral account** + supply shares + batch deposit+borrow. |
+| **[TALIS](https://cryptobriefing.com/talis-onchain-structured-markets-tokenized-stocks/)** | Split Stock Tokens into Income + Upside (structured, not a money market). | Adjacent - structured products, not USDG credit lines. Complementary, not a substitute for BorrowDesk. |
 
-**BorrowDesk differentiation:**
+### Other chains / issuers (same job, different rails)
 
-1. Live multi-collateral Stock Token → USDG credit on Robinhood Chain
-2. Partial liquidation (not full-debt-only)
-3. Liq price / LTV slider / repay receipt before sign
-4. Desk IA (tabs, ⌘K, oracle strip, per-asset risk bands)
-5. Reown wallet path for judges + mobile
+| Venue | What they do | Why not a direct substitute |
+|---|---|---|
+| **Ondo Stocks + Morpho / Euler** | SPYon / QQQon (/ TSLAon) as collateral → borrow USDC on Ethereum; Gauntlet / Sentora risk. | Different issuance + settlement chain. Not Robinhood Stock Tokens or USDG on 4663. |
+| **xStocks (Backed) + Morpho** | e.g. SPYx → borrow AUSD (Flowdesk vault). | Ethereum / issuer stack; Agora AUSD, not Paxos USDG on RH Chain. |
+| **Coinbase tokenized stocks + Morpho (Base)** | AAPLc / NVDAc / … → borrow USDC; Aave / Euler also listed. | Base + Coinbase wrappers; geo-fenced; not RH Stock Tokens. |
+| **Broker / CEX margin** | Sell equity or borrow cash in a custodial account. | Leaves the chain, kills self-custody composability, often forces a sale. |
+
+### Positioning
+
+| Axis | BorrowDesk |
+|---|---|
+| Settlement | Robinhood Chain mainnet only |
+| Borrow asset | Paxos **USDG** |
+| Collateral | Official RH Stock Tokens · **29** feed-backed markets |
+| Account model | Multi-collateral · shared health · partial liquidations |
+| UX bet | Credit **desk** (foresight ticket, Fund, Protocol, Look up, Reown) not a raw Morpho market page |
+
+**Honest gap vs Morpho:** Morpho wins on curated liquidity depth and Robinhood distribution. BorrowDesk wins on RH-native desk UX, multi-collateral account shape, and equity-tuned risk presentation for Stock Token holders who want dollars without selling.
 
 ---
 
@@ -377,19 +419,32 @@ Design notes live in `contracts/src/BorrowDeskMarket.sol` and `contracts/README.
 2. **Judge path** - Get started tab: chain 4663 → ETH gas → Stock Tokens → deposit → borrow.
 3. **Liquidity narrative** - grow USDG inventory beyond toy-scale (~$4.80 idle today); show pool clearly in UI.
 4. **Distribution** - Open House demos, RH Chain explorer links, Stock Token holder loops.
-5. **Trust** - rotate compromised deployer key, public addresses in this README, toned security copy.
+5. **Trust** - verified contracts, public addresses in this README, live desk + explorer links.
 
 ---
 
 ## Business model
 
+### Today (buildathon)
+
 | Stream | Mechanism |
 |---|---|
-| **Borrow interest** | ~5% APR on outstanding USDG debt (accrues via borrow index) |
+| **Borrow interest** | ~5% base APR (+ util APR on V2) on outstanding USDG debt |
 | **Liquidation bonus** | Liquidators repay USDG and seize collateral at configured bonus bps |
 | **Protocol inventory** | Owner-seeded + public USDG supply shares earn as utilization grows |
 
-No token launch. Primary demo metric today: **healthy borrows against live Stock Token collateral**.
+No protocol fee on borrows today. No product token today. Demo metric: **healthy Stock Token → USDG credit on mainnet**.
+
+### Future
+
+| Stream | Mechanism |
+|---|---|
+| **1% borrow fee** | Charge **1%** of each USDG borrow (origination) to the protocol treasury - paid in USDG at draw |
+| **Product token launch** | Launch a BorrowDesk protocol token for governance, fee-share / staking alignment, and liquidity incentives (suppliers, liquidators, desk growth) - **not** the borrow asset (USDG stays Paxos) |
+| **Interest + util APR** | Keep borrower interest; route a share of accrued interest to suppliers / treasury / token stakers as inventory scales |
+| **Liquidation bonus** | Unchanged - market-paid incentive for keeping the book solvent |
+
+Example: borrow **100 USDG** → **1 USDG** protocol fee → **99 USDG** net to the borrower (parameters subject to token governance once launched).
 
 ---
 
@@ -404,7 +459,7 @@ No token launch. Primary demo metric today: **healthy borrows against live Stock
 | 4 | V2 market: supply shares, util APR, Fund desk, Lens, Sourcify exact match | Done |
 | 5 | V1 → V2 liquidity + collateral migration · HF /10 UI · borrowdesk.fun | Done |
 | Next | Grow pool, ownership rotation, event-risk chips, liquidation bots | In progress |
-| Later | Audits, larger inventory, more Stock Token bands | Planned |
+| Later | **1% borrow fee**, **product token launch**, audits, larger inventory, more Stock Token bands | Planned |
 
 **Explicit non-goals (buildathon):** spot trading as a venue, issuing Stock Tokens, perps, cross-chain deploy.
 
@@ -428,7 +483,7 @@ Hackathon builder · shipped Web3 products · founder / speaker / grantee
 | X | [@amaanbiz](https://x.com/amaanbiz) |
 | GitHub | [AmaanSayyad](https://github.com/AmaanSayyad) |
 | LinkedIn | [amaan-sayyad-](https://www.linkedin.com/in/amaan-sayyad-/) |
-| Portfolio | [amaan-sayyad-portfolio.vercel.app](https://amaan-sayyad-portfolio.vercel.app/) |
+| Portfolio | [amaansayyad.com](https://amaansayyad.com) |
 
 For security reports, contact privately - do not open issues that include exploit PoCs against live funds.
 
@@ -534,17 +589,6 @@ Manual E2E checklist:
 | `deployments/` | Mainnet artifacts |
 | `MAINNET.md` | Live deploy + proven position notes |
 | `.env.example` | Env template |
-
----
-
-## Security notes
-
-- Never commit `.env`, private keys, or wallet JSON.
-- Deployer key was exposed in an earlier chat - **treat as compromised**; rotate ownership and drain residual funds when convenient.
-- Oracles: equity feeds are 24/5; `maxOracleDelay = 4 days` covers weekends - document this in demos.
-- Do not relax health / LTV checks in the market.
-- Reown project ID is public; protect the dashboard and allowlisted origins.
-- Pool is currently toy-scale (~5 USDG) - size inventory before promoting uncapped deposits.
 
 ---
 

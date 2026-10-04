@@ -23,8 +23,6 @@
 | Health factor (UI) | **10/10** (capped · raw liq/debt) |
 | Deposited | Multi-collateral (NVDA / AAPL + migrated V1 books) |
 
-> Security: treat the original deployer key as compromised. Rotate ownership / remaining funds when convenient.
-
 ## Runtime
 
 - Network: Robinhood Chain mainnet `4663`
