@@ -4,14 +4,27 @@
 
 Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit NVDA / AAPL / TSLA / SPY, borrow Global Dollar, see liquidation math before you sign.
 
-Built for the [Arbitrum Open House Singapore Online Buildathon](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon).
+## Links
+
+| | |
+|---|---|
+| **Live app** | [https://borrowdesk.fun](https://borrowdesk.fun) · [Open desk](https://borrowdesk.fun/app) · [Verify claims](https://borrowdesk.fun/verify) |
+| **Vercel** | [https://borrowdesk.vercel.app](https://borrowdesk.vercel.app) |
+| **GitHub** | [github.com/AmaanSayyad/BorrowDesk](https://github.com/AmaanSayyad/BorrowDesk) |
+| **Hackathon** | [Arbitrum Open House Singapore Online Buildathon](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon) |
+| **Market V2** | [`0x1745…0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) · [Sourcify exact match](https://repo.sourcify.dev/4663/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
+| **Lens** | [`0x0256…55cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) · [Sourcify exact match](https://repo.sourcify.dev/4663/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
+| **Legacy V1** | [`0x2e4E…9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
+| **USDG** | [`0x5fc5…d168`](https://robinhoodchain.blockscout.com/address/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168) |
+| **Explorer** | [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com) |
+| **RPC** | `https://robinhood.drpc.org` · chain id `4663` |
+| **Manifest** | [`deployments/robinhood.json`](./deployments/robinhood.json) |
+| **Local** | `npm run dev` → [http://localhost:3000](http://localhost:3000) · [app](http://localhost:3000/app) |
 
 | | |
 |---|---|
 | **Product one-liner** | Stock Tokens → USDG credit on Robinhood Chain (4663) |
-| **Live market** | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
-| **App** | `npm run dev` → [http://localhost:3000/app](http://localhost:3000/app) |
-| **Status** | Mainnet live · borrow proven · healthy position |
+| **Status** | Mainnet live · V2 market + lens verified · borrow proven |
 
 ---
 
@@ -204,10 +217,12 @@ Public addresses only. **Never commit** private keys or `.env`.
 
 | Role | Address | Notes |
 |---|---|---|
-| **BorrowDeskMarket** (`OpenLineMarket`) | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) | Live credit market · [Sourcify exact match](https://sourcify.dev/#/lookup/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
+| **BorrowDeskMarket V2** | [`0x17452DAB5976B770107c126fBC92aD746a3C0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) | Live credit market · util APR · [Sourcify exact match](https://repo.sourcify.dev/4663/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
+| **BorrowDeskLens** | [`0x025694b88ddd0a6ffac740df4170b8ea590355cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) | Desk reads · [Sourcify exact match](https://repo.sourcify.dev/4663/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
+| **Legacy V1** | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) | First proven market · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
 | **Owner** | `0x1881Dfd2b29536F054AA0b0A4966856290388Cc2` | Market owner (rotate if key compromised) |
 | **USDG** | `0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168` | Global Dollar · 6 decimals |
-| **Create tx** | [`0x011533…3675`](https://robinhoodchain.blockscout.com/tx/0x011533d69bab32b19c066e45547672cdd4697043314389f223252e1c477c3675) | Deployment |
+| **V2 deploy tx** | [`0xe937fb…dfa0`](https://robinhoodchain.blockscout.com/tx/0xe937fb4b81a7ac7f88e1f8bc586661e06ff296764305ff7fa88a40c91a7edfa0) | Market create |
 | **RPC (preferred)** | `https://robinhood.drpc.org` | Official Cloudflare RPC often 403s forge |
 | **Explorer** | [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com) | |
 
@@ -437,7 +452,9 @@ Minimum for the live desk:
 ```bash
 NEXT_PUBLIC_CHAIN_ID=4663
 NEXT_PUBLIC_RH_RPC_URL=https://robinhood.drpc.org
-NEXT_PUBLIC_BORROWDESK_MARKET=0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d
+NEXT_PUBLIC_BORROWDESK_MARKET=0x17452DAB5976B770107c126fBC92aD746a3C0200
+NEXT_PUBLIC_BORROWDESK_LENS=0x025694b88ddd0a6ffac740df4170b8ea590355cc
+NEXT_PUBLIC_SITE_URL=https://borrowdesk.fun
 NEXT_PUBLIC_REOWN_PROJECT_ID=          # from dashboard.reown.com
 ```
 
