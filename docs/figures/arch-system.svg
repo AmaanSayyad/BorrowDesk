@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+  <defs>
+    <style>
+      .box { fill:#f7f4ef; stroke:#1a1710; stroke-width:1.5; }
+      .box-core { fill:#1a1710; }
+      .box-rail { fill:#e8f0ea; stroke:#1a1710; stroke-width:1.5; }
+      .box-oracle { fill:#eef2f8; stroke:#1a1710; stroke-width:1.5; }
+      .t { font-family: Helvetica, Arial, sans-serif; fill:#1a1710; font-size:13px; }
+      .t-w { fill:#f7f4ef; }
+      .t-s { font-size:11px; fill:#4a453c; }
+      .t-title { font-size:15px; font-weight:700; }
+      .arrow { stroke:#1a1710; stroke-width:1.4; fill:none; marker-end:url(#m); }
+      .lbl { font-size:10px; fill:#4a453c; font-family: Helvetica, Arial, sans-serif; }
+    </style>
+    <marker id="m" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1710"/>
+    </marker>
+  </defs>
+  <rect width="920" height="520" fill="#fbfaf7"/>
+  <text x="24" y="28" class="t t-title">Figure 1 - BorrowDesk system architecture (Robinhood Chain 4663)</text>
+
+  <rect x="40" y="56" width="840" height="70" rx="6" class="box"/>
+  <text x="56" y="84" class="t t-title">Credit Desk (Next.js / wagmi / Reown AppKit)</text>
+  <text x="56" y="106" class="t t-s">Fund, Borrow ticket, Positions, Markets, Protocol, Risk, Look up, health 0-10, foresight</text>
+
+  <path d="M250 126 L250 168" class="arrow"/>
+  <path d="M670 126 L670 168" class="arrow"/>
+  <text x="168" y="158" class="lbl">write: approve + state txs</text>
+  <text x="682" y="158" class="lbl">read: Lens multicall</text>
+
+  <rect x="80" y="172" width="340" height="100" rx="6" class="box-core"/>
+  <text x="100" y="204" class="t t-w t-title">BorrowDeskMarket V2</text>
+  <text x="100" y="226" class="t t-w" style="font-size:11px">0x1745...0200 - accrual, LTV, liq, shares</text>
+  <text x="100" y="248" class="t t-w" style="font-size:11px">depositAndBorrow, supply/redeem, liquidate</text>
+
+  <rect x="500" y="172" width="340" height="100" rx="6" class="box"/>
+  <text x="520" y="204" class="t t-title">BorrowDeskLens</text>
+  <text x="520" y="226" class="t t-s">0x0256...55cc - deskSnapshot, accountSnapshot</text>
+  <text x="520" y="248" class="t t-s">marketsPage, accountsSnapshot (keeper batch)</text>
+
+  <path d="M180 272 L180 318" class="arrow"/>
+  <path d="M320 272 L320 318" class="arrow"/>
+  <path d="M250 272 L460 318" class="arrow"/>
+
+  <rect x="60" y="322" width="200" height="88" rx="6" class="box-rail"/>
+  <text x="76" y="350" class="t t-title">Stock Tokens</text>
+  <text x="76" y="372" class="t t-s">ERC-20, 18 decimals</text>
+  <text x="76" y="392" class="t t-s">NVDA ... SGOV (29 listed)</text>
+
+  <rect x="290" y="322" width="200" height="88" rx="6" class="box-rail"/>
+  <text x="306" y="350" class="t t-title">USDG</text>
+  <text x="306" y="372" class="t t-s">Paxos Global Dollar</text>
+  <text x="306" y="392" class="t t-s">6 decimals, 0x5fc5...d168</text>
+
+  <rect x="520" y="322" width="320" height="88" rx="6" class="box-oracle"/>
+  <text x="536" y="350" class="t t-title">Price feeds (soft-session)</text>
+  <text x="536" y="372" class="t t-s">AggregatorV3 latestRoundData</text>
+  <text x="536" y="392" class="t t-s">valid if age &lt;= 4 days (default)</text>
+
+  <rect x="40" y="438" width="840" height="56" rx="6" class="box"/>
+  <text x="56" y="462" class="t">Settlement: Robinhood Chain L2 | RPC robinhood.drpc.org | Explorer robinhoodchain.blockscout.com</text>
+  <text x="56" y="482" class="t t-s">Owner lists markets / sets oracle delay - cannot seize healthy collateral. Funds move only on signed txs.</text>
+</svg>

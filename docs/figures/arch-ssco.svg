@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420">
+  <defs>
+    <style>
+      .t { font-family: Helvetica, Arial, sans-serif; fill:#1a1710; font-size:12px; }
+      .t-title { font-size:15px; font-weight:700; }
+      .t-s { font-size:10px; fill:#4a453c; }
+      .box { fill:#f7f4ef; stroke:#1a1710; stroke-width:1.5; }
+      .ok { fill:#d8e8dc; stroke:#1a1710; stroke-width:1.2; }
+      .bad { fill:#f0d8d4; stroke:#1a1710; stroke-width:1.2; }
+      .line { stroke:#1a1710; stroke-width:1.5; fill:none; }
+      .dash { stroke:#1a1710; stroke-width:1.2; stroke-dasharray:5 4; fill:none; }
+    </style>
+  </defs>
+  <rect width="920" height="420" fill="#fbfaf7"/>
+  <text x="24" y="28" class="t t-title">Figure 4 - Soft-session oracle validity window</text>
+
+  <line x1="80" y1="160" x2="860" y2="160" class="line"/>
+  <text x="80" y="120" class="t" style="font-weight:700">Equity calendar (illustrative US session)</text>
+
+  <rect x="80" y="140" width="120" height="40" class="ok"/>
+  <text x="100" y="164" class="t">Fri open</text>
+
+  <rect x="200" y="140" width="80" height="40" class="ok"/>
+  <text x="212" y="164" class="t">Fri close</text>
+
+  <rect x="280" y="140" width="280" height="40" class="ok" opacity="0.85"/>
+  <text x="340" y="158" class="t">Sat-Sun (market closed)</text>
+  <text x="360" y="174" class="t-s">last mark still VALID</text>
+
+  <rect x="560" y="140" width="100" height="40" class="ok"/>
+  <text x="575" y="164" class="t">Mon open</text>
+
+  <rect x="680" y="140" width="160" height="40" class="bad"/>
+  <text x="700" y="158" class="t">older than max delay</text>
+  <text x="710" y="174" class="t-s">StaleOracle revert</text>
+
+  <line x1="200" y1="200" x2="200" y2="250" class="dash"/>
+  <line x1="200" y1="250" x2="640" y2="250" class="dash"/>
+  <line x1="640" y1="250" x2="640" y2="200" class="dash"/>
+  <text x="300" y="242" class="t">maxOracleDelay = 4 days (default), owner range 1h-14d</text>
+
+  <rect x="40" y="290" width="840" height="100" rx="6" class="box"/>
+  <text x="56" y="318" class="t" style="font-weight:700">Rule</text>
+  <text x="56" y="342" class="t">A feed price is usable if answer &gt; 0 and (now - updatedAt) &lt;= maxOracleDelay.</text>
+  <text x="56" y="366" class="t">Crypto-style 1h heartbeats would freeze the market every weekend. Four days covers a long weekend.</text>
+  <text x="56" y="390" class="t t-s">BorrowDesk reads the onchain token price directly (multiplier already included) - not raw REST bid/ask.</text>
+</svg>

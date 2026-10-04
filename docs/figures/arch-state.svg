@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="480" viewBox="0 0 920 480">
+  <defs>
+    <style>
+      .box { fill:#f7f4ef; stroke:#1a1710; stroke-width:1.5; }
+      .box-d { fill:#1a1710; }
+      .t { font-family: Helvetica, Arial, sans-serif; fill:#1a1710; font-size:12px; }
+      .t-w { fill:#f7f4ef; }
+      .t-title { font-size:15px; font-weight:700; }
+      .t-s { font-size:10px; fill:#4a453c; }
+      .arrow { stroke:#1a1710; stroke-width:1.4; fill:none; marker-end:url(#m); }
+    </style>
+    <marker id="m" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1710"/>
+    </marker>
+  </defs>
+  <rect width="920" height="480" fill="#fbfaf7"/>
+  <text x="24" y="28" class="t t-title">Figure 3 - Account state machine and interest index</text>
+
+  <rect x="40" y="56" width="200" height="64" rx="6" class="box"/>
+  <text x="70" y="82" class="t" style="font-weight:700">EMPTY</text>
+  <text x="56" y="102" class="t t-s">debt=0, collateral=0</text>
+
+  <path d="M240 88 L300 88" class="arrow"/>
+  <text x="248" y="80" class="t t-s">deposit</text>
+
+  <rect x="300" y="56" width="220" height="64" rx="6" class="box"/>
+  <text x="330" y="82" class="t" style="font-weight:700">COLLATERALIZED</text>
+  <text x="316" y="102" class="t t-s">value &gt; 0, debt=0, HF max</text>
+
+  <path d="M520 88 L580 88" class="arrow"/>
+  <text x="528" y="80" class="t t-s">borrow / ticket</text>
+
+  <rect x="580" y="56" width="280" height="64" rx="6" class="box"/>
+  <text x="620" y="82" class="t" style="font-weight:700">LEVERED HEALTHY</text>
+  <text x="596" y="102" class="t t-s">debt USD &lt;= liq capacity</text>
+
+  <path d="M720 120 L720 170" class="arrow"/>
+  <text x="732" y="150" class="t t-s">price down / interest up</text>
+
+  <rect x="580" y="174" width="280" height="64" rx="6" class="box-d"/>
+  <text x="620" y="200" class="t t-w" style="font-weight:700">UNHEALTHY</text>
+  <text x="596" y="220" class="t t-w" style="font-size:10px">debt USD &gt; liq capacity - liquidatable</text>
+
+  <path d="M580 206 L400 206" class="arrow"/>
+  <text x="430" y="198" class="t t-s">liquidate / repay</text>
+
+  <rect x="180" y="174" width="220" height="64" rx="6" class="box"/>
+  <text x="220" y="200" class="t" style="font-weight:700">REPAYING / EXIT</text>
+  <text x="196" y="220" class="t t-s">repay; withdraw if still in power</text>
+
+  <rect x="40" y="280" width="840" height="170" rx="6" class="box"/>
+  <text x="56" y="308" class="t" style="font-weight:700">Global borrow index (Compound-style)</text>
+  <text x="56" y="336" class="t">Index grows with time and utilization. User debt = principal x currentIndex / snapshotIndex.</text>
+  <text x="56" y="364" class="t">Borrow APR ~ 2% + 8% x utilization (about 2% empty, up to ~10% fully used).</text>
+  <text x="56" y="392" class="t t-s">Every asset-moving call accrues first. Interest is absorbed into principal via the index - no separate interest bucket.</text>
+  <text x="56" y="416" class="t t-s">depositAndBorrow is one transaction: collateral in and USDG out with a single borrow-power check.</text>
+  <text x="56" y="440" class="t t-s">Withdraw while leveraged requires post-state debt &lt;= borrow power (stricter than liquidation line).</text>
+</svg>

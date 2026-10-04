@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="460" viewBox="0 0 920 460">
+  <defs>
+    <style>
+      .t { font-family: Helvetica, Arial, sans-serif; fill:#1a1710; font-size:12px; }
+      .t-title { font-size:15px; font-weight:700; }
+      .t-s { font-size:10px; fill:#4a453c; }
+      .box { fill:#f7f4ef; stroke:#1a1710; stroke-width:1.5; }
+      .axis { stroke:#1a1710; stroke-width:1.4; fill:none; marker-end:url(#m); }
+      .curve { stroke:#1a1710; stroke-width:2; fill:none; }
+      .fill { fill:#d8e8dc; stroke:none; opacity:0.55; }
+      .fill2 { fill:#f0d8d4; stroke:none; opacity:0.45; }
+      .dot { fill:#1a1710; }
+    </style>
+    <marker id="m" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1a1710"/>
+    </marker>
+  </defs>
+  <rect width="920" height="460" fill="#fbfaf7"/>
+  <text x="24" y="28" class="t t-title">Figure 5 - Drop-to-liquidatable (foresight before you sign)</text>
+
+  <path d="M80 340 L80 80" class="axis"/>
+  <path d="M80 340 L420 340" class="axis"/>
+  <text x="40" y="90" class="t t-s">Price</text>
+  <text x="390" y="360" class="t t-s">drop %</text>
+
+  <path d="M80 340 L80 120 L280 120 L420 340 Z" class="fill2"/>
+  <path d="M80 340 L80 120 L280 120 L80 340 Z" class="fill"/>
+  <path d="M80 120 L280 120 L420 340" class="curve"/>
+
+  <circle cx="160" cy="200" r="4" class="dot"/>
+  <text x="170" y="196" class="t">current mark</text>
+  <text x="170" y="212" class="t t-s">example HF ~ 8.4/10</text>
+
+  <line x1="280" y1="120" x2="280" y2="340" stroke="#1a1710" stroke-dasharray="4 3"/>
+  <text x="250" y="360" class="t t-s">critical</text>
+  <text x="286" y="140" class="t">liq line (HF = 1)</text>
+  <text x="100" y="300" class="t t-s">safe</text>
+  <text x="320" y="280" class="t t-s">liquidatable</text>
+
+  <rect x="480" y="70" width="400" height="340" rx="6" class="box"/>
+  <text x="500" y="100" class="t" style="font-weight:700">How the desk estimates it</text>
+  <text x="500" y="130" class="t">Hold other prices fixed. Find the price of</text>
+  <text x="500" y="150" class="t">one asset where debt = liq capacity.</text>
+  <text x="500" y="186" class="t">P* = (debt USD - other liq value)</text>
+  <text x="500" y="208" class="t">     / (balance x liq threshold)</text>
+  <text x="500" y="244" class="t">drop % = max(0, 1 - P* / P_now)</text>
+  <text x="500" y="280" class="t">Borrow sizing uses LTV (borrow power).</text>
+  <text x="500" y="300" class="t">Drop-to-liq uses liquidation threshold.</text>
+  <text x="500" y="336" class="t t-s">UI health: min(10, liq/debt x 10)</text>
+  <text x="500" y="358" class="t t-s">Onchain: healthy if debt &lt;= liq capacity</text>
+  <text x="500" y="386" class="t t-s">Example: $100 NVDA, $50 debt, 75% liq</text>
+  <text x="500" y="404" class="t t-s">=&gt; ~33% drop before liquidatable</text>
+</svg>

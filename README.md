@@ -11,6 +11,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 | **Live app** | [https://borrowdesk.fun](https://borrowdesk.fun) · [Open desk](https://borrowdesk.fun/app) · [Verify claims](https://borrowdesk.fun/verify) |
 | **Pitch deck** | [Chronicle share](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f) |
 | **Demo + pitch video** | [youtu.be/fCIIUwtG35g](https://youtu.be/fCIIUwtG35g) |
+| **Litepaper** | [Markdown](./docs/BorrowDesk-Litepaper.md) · [PDF](./docs/BorrowDesk-Litepaper.pdf) |
 | **Vercel** | [https://borrowdesk.vercel.app](https://borrowdesk.vercel.app) |
 | **GitHub** | [github.com/AmaanSayyad/BorrowDesk](https://github.com/AmaanSayyad/BorrowDesk) |
 | **Hackathon** | [Arbitrum Open House Singapore Online Buildathon](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon) |
