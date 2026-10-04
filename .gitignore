@@ -51,3 +51,4 @@ contracts/.gitmodules
 *.swp
 .idea/
 .vscode/
+.env*
