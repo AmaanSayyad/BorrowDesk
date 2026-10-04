@@ -9,6 +9,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 | | |
 |---|---|
 | **Live app** | [https://borrowdesk.fun](https://borrowdesk.fun) · [Open desk](https://borrowdesk.fun/app) · [Verify claims](https://borrowdesk.fun/verify) |
+| **Pitch deck** | [Chronicle share](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f) |
 | **Vercel** | [https://borrowdesk.vercel.app](https://borrowdesk.vercel.app) |
 | **GitHub** | [github.com/AmaanSayyad/BorrowDesk](https://github.com/AmaanSayyad/BorrowDesk) |
 | **Hackathon** | [Arbitrum Open House Singapore Online Buildathon](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon) |
@@ -484,6 +485,7 @@ Hackathon builder · shipped Web3 products · founder / speaker / grantee
 | GitHub | [AmaanSayyad](https://github.com/AmaanSayyad) |
 | LinkedIn | [amaan-sayyad-](https://www.linkedin.com/in/amaan-sayyad-/) |
 | Portfolio | [amaansayyad.com](https://amaansayyad.com) |
+| Pitch deck | [Chronicle](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f) |
 
 For security reports, contact privately - do not open issues that include exploit PoCs against live funds.
 
@@ -602,9 +604,10 @@ Copyright (c) 2026 BorrowDesk builders.
 
 ## Further reading
 
-1. [`MAINNET.md`](./MAINNET.md) - live addresses + proven position  
-2. [`contracts/README.md`](./contracts/README.md) - Foundry deploy checklist  
-3. [`contracts/src/BorrowDeskMarket.sol`](./contracts/src/BorrowDeskMarket.sol) - market logic  
-4. [Robinhood Chain docs - Stock Tokens](https://docs.robinhood.com/chain/stock-tokens/)  
-5. [Reown dashboard](https://dashboard.reown.com) - wallet project config  
-6. [Arbitrum Open House Singapore](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon)
+1. [Pitch deck (Chronicle)](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f)  
+2. [`MAINNET.md`](./MAINNET.md) - live addresses + proven position  
+3. [`contracts/README.md`](./contracts/README.md) - Foundry deploy checklist  
+4. [`contracts/src/BorrowDeskMarket.sol`](./contracts/src/BorrowDeskMarket.sol) - market logic  
+5. [Robinhood Chain docs - Stock Tokens](https://docs.robinhood.com/chain/stock-tokens/)  
+6. [Reown dashboard](https://dashboard.reown.com) - wallet project config  
+7. [Arbitrum Open House Singapore](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon)

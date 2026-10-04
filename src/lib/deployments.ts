@@ -15,6 +15,8 @@ export const MAINNET = {
   weth: "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73" as `0x${string}`,
   lens: (process.env.NEXT_PUBLIC_BORROWDESK_LENS ??
     "0x025694b88DDd0A6ffaC740df4170B8EA590355cc") as `0x${string}`,
+  pitchDeck:
+    "https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f",
   feeds: {
     NVDA: "0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
     AAPL: "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",

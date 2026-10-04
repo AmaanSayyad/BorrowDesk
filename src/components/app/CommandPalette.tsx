@@ -11,10 +11,11 @@ import {
 import { useRouter } from "next/navigation";
 import { useTour } from "@/components/app/ProductTour";
 import { LISTED_TOKENS, STOCK_TOKENS } from "@/lib/tokens";
+import { MAINNET } from "@/lib/deployments";
 import { TokenLogo } from "@/components/ui/TokenLogo";
 import { cn } from "@/lib/utils";
 
-type Group = "Desks" | "Assets" | "Quick actions";
+type Group = "Desks" | "Assets" | "Quick actions" | "Links";
 
 type Item = {
   id: string;
@@ -249,7 +250,42 @@ export function CommandPalette() {
       },
     ]);
 
-    return [...desks, ...assets, ...actions];
+    const links: Item[] = [
+      {
+        id: "pitch-deck",
+        label: "Pitch deck",
+        hint: "Chronicle share · BorrowDesk.fun",
+        group: "Links",
+        keywords: "pitch deck chronicle slide presentation share",
+        icon: <IconBox>◈</IconBox>,
+        run: () => window.open(MAINNET.pitchDeck, "_blank", "noopener,noreferrer"),
+      },
+      {
+        id: "verify-page",
+        label: "Verify claims",
+        hint: "Onchain proof page",
+        group: "Links",
+        keywords: "verify sourcify proof",
+        icon: <IconBox>✓</IconBox>,
+        run: () => router.push("/verify"),
+      },
+      {
+        id: "github",
+        label: "GitHub",
+        hint: "AmaanSayyad/BorrowDesk",
+        group: "Links",
+        keywords: "github repo source",
+        icon: <IconBox>⌥</IconBox>,
+        run: () =>
+          window.open(
+            "https://github.com/AmaanSayyad/BorrowDesk",
+            "_blank",
+            "noopener,noreferrer",
+          ),
+      },
+    ];
+
+    return [...desks, ...assets, ...actions, ...links];
   }, [router, tour]);
 
   const filtered = useMemo(() => {
@@ -288,7 +324,7 @@ export function CommandPalette() {
   };
 
   const grouped = useMemo(() => {
-    const order: Group[] = ["Desks", "Assets", "Quick actions"];
+    const order: Group[] = ["Desks", "Assets", "Quick actions", "Links"];
     return order
       .map((group) => ({
         group,

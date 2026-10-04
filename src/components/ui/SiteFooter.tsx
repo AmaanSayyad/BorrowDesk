@@ -32,6 +32,16 @@ const PRODUCT: FooterLink[] = [
 const PLATFORM: FooterLink[] = [
   { href: "/app", label: "Credit desk" },
   {
+    href: MAINNET.pitchDeck,
+    label: "Pitch deck",
+    external: true,
+  },
+  {
+    href: "https://github.com/AmaanSayyad/BorrowDesk",
+    label: "GitHub",
+    external: true,
+  },
+  {
     href: `${MAINNET.explorer}/address/${MAINNET.market}`,
     label: "Live market",
     external: true,
@@ -81,6 +91,16 @@ const COMPANY: FooterLink[] = [
     href: "https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon",
     label: "Open House Singapore",
     logo: "/partners/openhouse.png",
+    external: true,
+  },
+  {
+    href: MAINNET.pitchDeck,
+    label: "Pitch deck",
+    external: true,
+  },
+  {
+    href: "https://github.com/AmaanSayyad/BorrowDesk",
+    label: "GitHub",
     external: true,
   },
   {
@@ -214,28 +234,50 @@ export function SiteFooter() {
             </span>
           </Link>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="mr-1 text-[13px] text-rh-on-lime/70">Built on</span>
-            <BuiltOnChip
-              href="https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon"
-              label="Open House"
-              logo="/partners/openhouse.png"
-            />
-            <BuiltOnChip
-              href="https://robinhood.com/us/en/chain/"
-              label="Robinhood Chain"
-              logo="/partners/robinhood.svg"
-            />
-            <BuiltOnChip
-              href="https://docs.arbitrum.io/"
-              label="Arbitrum"
-              logo="/partners/arbitrum.png"
-            />
-            <BuiltOnChip
-              href={`${MAINNET.explorer}/token/${MAINNET.usdg}`}
-              label="USDG"
-              logo="/tokens/usdg.png"
-            />
+          <div className="flex flex-col items-start gap-3 sm:items-end">
+            <div className="flex flex-wrap items-center gap-2">
+              <a
+                href={MAINNET.pitchDeck}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#110e08] px-3 py-1.5 text-[13px] font-medium ring-1 ring-black/25"
+                style={{ color: "#CCFF00" }}
+              >
+                Pitch deck
+              </a>
+              <a
+                href="https://github.com/AmaanSayyad/BorrowDesk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#110e08] px-3 py-1.5 text-[13px] font-medium ring-1 ring-black/25"
+                style={{ color: "#CCFF00" }}
+              >
+                GitHub
+              </a>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="mr-1 text-[13px] text-rh-on-lime/70">Built on</span>
+              <BuiltOnChip
+                href="https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon"
+                label="Open House"
+                logo="/partners/openhouse.png"
+              />
+              <BuiltOnChip
+                href="https://robinhood.com/us/en/chain/"
+                label="Robinhood Chain"
+                logo="/partners/robinhood.svg"
+              />
+              <BuiltOnChip
+                href="https://docs.arbitrum.io/"
+                label="Arbitrum"
+                logo="/partners/arbitrum.png"
+              />
+              <BuiltOnChip
+                href={`${MAINNET.explorer}/token/${MAINNET.usdg}`}
+                label="USDG"
+                logo="/tokens/usdg.png"
+              />
+            </div>
           </div>
         </div>
 
