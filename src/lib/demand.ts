@@ -18,8 +18,8 @@ export const MORPHO_DEMAND = {
 /** Proven deployer position snapshot (see MAINNET.md). */
 export const PROVEN_POSITION = {
   borrower: "0x1881Dfd2b29536F054AA0b0A4966856290388Cc2" as const,
-  collateralUsd: 0.53,
-  debtUsdg: 0.287631,
+  collateralUsd: 1.32,
+  debtUsdg: 0.0001,
   healthy: true,
   assets: ["NVDA", "AAPL"] as const,
 } as const;
@@ -46,12 +46,12 @@ export const PROOF_EVENTS: ProofEvent[] = [
     title: "Liquidity seeded",
     body: "Owner seeded the USDG pool so borrowers have idle cash to draw.",
     tx: "0xb67f1febd164668f63dbdd0cbd8491163c603612f0bcefe3b9dc81b78ad4eb11",
-    metric: "~5.03 USDG",
-    metricLabel: "Idle pool after seed",
+    metric: "~4.80 USDG",
+    metricLabel: "Idle pool on V2",
   },
   {
     title: "Borrow proven",
-    body: "Live account holds NVDA + AAPL collateral with healthy USDG debt.",
+    body: "Live V2 account holds multi-collateral Stock Tokens with healthy USDG debt.",
     tx: null,
     account: PROVEN_POSITION.borrower,
     metric: `${PROVEN_POSITION.debtUsdg} USDG`,
@@ -67,7 +67,7 @@ export const TRUST_TIER = {
 export const BUILDATHON_LIMITS = [
   {
     title: "Toy-scale USDG pool",
-    body: "Liquidity is owner-seeded at ~$5 USDG for the buildathon. Max borrow is whatever idle cash remains.",
+    body: "Liquidity is owner-seeded at ~$4.80 USDG idle for the buildathon. Max borrow is whatever idle cash remains.",
   },
   {
     title: "Owner can list markets",

@@ -1,27 +1,29 @@
 # BorrowDesk - Robinhood Chain mainnet
 
-## Live deployment
+## Live deployment (V2)
 
 | Field | Value |
 |---|---|
-| Market | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
+| Market V2 | [`0x17452DAB5976B770107c126fBC92aD746a3C0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
+| Lens | [`0x025694b88ddd0a6ffac740df4170b8ea590355cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
+| Legacy V1 | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) · drained / unused |
 | Owner | `0x1881Dfd2b29536F054AA0b0A4966856290388Cc2` |
-| Create tx | [`0x011533d69bab32b19c066e45547672cdd4697043314389f223252e1c477c3675`](https://robinhoodchain.blockscout.com/tx/0x011533d69bab32b19c066e45547672cdd4697043314389f223252e1c477c3675) |
-| Listed | NVDA, AAPL, TSLA, SPY |
-| Pool USDG | **~5.03 USDG** available |
-| Status | **Borrow proven** - position healthy |
+| Listed | 29 Stock Token / ETF markets |
+| Pool USDG (idle) | **~4.80 USDG** |
+| Status | **Live** - V2 supply shares · util APR · borrow proven |
 
-### Proven onchain position (deployer)
+### Proven onchain position (deployer · V2)
 
 | Metric | Value |
 |---|---|
-| Collateral (oracle USD) | ~$0.53 |
-| Debt | **0.287631 USDG** |
-| Borrow power remaining | ~$0.032 |
+| Collateral (oracle USD) | ~$1.32 |
+| Debt | **~0.0001 USDG** (dust) |
+| Borrow power remaining | ~$0.78 |
 | Healthy | `true` |
-| Deposited | NVDA + AAPL (wallet balances now 0 - fully deposited) |
+| Health factor (UI) | **10/10** (capped · raw liq/debt) |
+| Deposited | Multi-collateral (NVDA / AAPL + migrated V1 books) |
 
-> Security: the deployer private key was pasted in chat - treat it as compromised. Rotate ownership / remaining funds when convenient.
+> Security: treat the original deployer key as compromised. Rotate ownership / remaining funds when convenient.
 
 ## Runtime
 
@@ -29,6 +31,7 @@
 - Preferred RPC: `https://robinhood.drpc.org` (official Cloudflare RPC often 403s forge)
 - Explorer: `https://robinhoodchain.blockscout.com`
 - USDG: `0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168` (**6 decimals**)
+- App: [https://borrowdesk.fun](https://borrowdesk.fun)
 
 ## App
 
@@ -38,4 +41,4 @@ npm run dev
 # open http://localhost:3000/app
 ```
 
-- **Connect wallet** on Robinhood Chain (4663) for live deposit / borrow / repay / withdraw
+- **Connect wallet** on Robinhood Chain (4663) for live deposit / borrow / repay / withdraw / supply

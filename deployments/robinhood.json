@@ -226,16 +226,18 @@
   },
   "borrowApr": 0.05,
   "maxOracleDelayDays": 4,
-  "liquidityUsdgRaw": "5034918",
-  "liquidityUsdg": 5.034918,
+  "liquidityUsdgRaw": "4804309",
+  "liquidityUsdg": 4.804309,
   "position": {
     "borrower": "0x1881Dfd2b29536F054AA0b0A4966856290388Cc2",
-    "collateralUsdApprox": 0.5327,
-    "debtUsdg": 0.287631,
+    "collateralUsdApprox": 1.3189,
+    "debtUsdg": 0.0001,
     "healthy": true,
+    "healthFactorUi": "10/10",
     "deposited": [
       "NVDA",
-      "AAPL"
+      "AAPL",
+      "multi_collateral_migrated_from_v1"
     ]
   },
   "morphoDemand": {

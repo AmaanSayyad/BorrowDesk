@@ -14,7 +14,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 | **Hackathon** | [Arbitrum Open House Singapore Online Buildathon](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon) |
 | **Market V2** | [`0x1745…0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) · [Sourcify exact match](https://repo.sourcify.dev/4663/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
 | **Lens** | [`0x0256…55cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) · [Sourcify exact match](https://repo.sourcify.dev/4663/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
-| **Legacy V1** | [`0x2e4E…9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
+| **Legacy V1** | [`0x2e4E…9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) · drained / unused · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
 | **USDG** | [`0x5fc5…d168`](https://robinhoodchain.blockscout.com/address/0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168) |
 | **Explorer** | [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com) |
 | **RPC** | `https://robinhood.drpc.org` · chain id `4663` |
@@ -24,7 +24,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 | | |
 |---|---|
 | **Product one-liner** | Stock Tokens → USDG credit on Robinhood Chain (4663) |
-| **Status** | Mainnet live · V2 market + lens verified · borrow proven |
+| **Status** | Mainnet live · V2 + Lens verified · V1 drained · HF /10 UI |
 
 ---
 
@@ -64,7 +64,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 |---|---|
 | Stock Token holders | Unlock dollar liquidity without selling equity upside |
 | Crypto-native borrowers | USDG credit against real equity marks on RH Chain |
-| Liquidators / keepers | Partial liquidations with bonus; accrue interest onchain |
+| Liquidators | Partial liquidations with bonus via Look up · accrue interest onchain |
 | Judges / operators | Live mainnet market, Reown wallet, desk tabs, ⌘K search |
 
 **Not this product:** We are not a spot DEX, not a perp venue, and not an issuer of Stock Tokens or USDG. We compose the assets Robinhood / Paxos already put onchain.
@@ -75,7 +75,7 @@ Collateralized USDG credit lines against Robinhood Chain Stock Tokens - deposit 
 
 In 2025-2026, **Robinhood Chain** launched as an EVM home for tokenized equities: Stock Tokens with Chainlink-style feeds, Global Dollar (USDG) as the dollar rail, and an open permissionless L2. At the same time, most “stock leverage” still lived on CEXes or non-RH venues - holders of NVDA / AAPL tokens could not post those assets as collateral for USDG credit on the same chain.
 
-BorrowDesk is built RH-Chain-native from day one: a single `BorrowDeskMarket` with multi-collateral accounts, oracle-priced LTV bands, ~5% APR accrual, and partial liquidation - plus a full credit desk (health, ticket, markets, risk, liquidate, asset pages, TradingView).
+BorrowDesk is built RH-Chain-native from day one: a `BorrowDeskMarket` V2 with multi-collateral accounts, supply shares, utilization APR, oracle-priced LTV bands, and partial liquidation - plus a full credit desk (Fund, Protocol, health /10, ticket, markets, risk, look up, asset pages, TradingView).
 
 The inspiration is simple: **bring dollar credit to where the stocks already are**, let those stocks be collateral, and show liquidation foresight so nobody is surprised by a liquidatable LTV.
 
@@ -101,7 +101,7 @@ The inspiration is simple: **bring dollar credit to where the stocks already are
 | Oracle-priced risk | Chainlink-style AggregatorV3 feeds; per-asset LTV / liq / bonus bands |
 | Foresight ticket | LTV slider, est. liq price, drop-to-liquidatable, interest/day, repay receipt |
 | Partial liquidation | Repay underwater debt, seize collateral at bonus - not full-debt-only |
-| Live desk | Overview / Borrow / Positions / Markets / Risk / Liquidate / Get started |
+| Live desk | Overview · Borrow · Fund · Positions · Markets · Protocol · Risk · Look up · Start |
 | Reown wallet | AppKit (WalletConnect + injected) on chain 4663 |
 
 ---
@@ -110,7 +110,7 @@ The inspiration is simple: **bring dollar credit to where the stocks already are
 
 ### Trust model
 
-User funds only move when the connected wallet signs ERC-20 `approve` + market calls (`deposit`, `borrow`, `repay`, `withdraw`, `liquidate`). The market owner can list markets, set oracle delay, and seed USDG liquidity - **not** seize healthy user collateral. Oracles are external AggregatorV3 feeds; stale reads revert when beyond `maxOracleDelay` (default **4 days** for 24/5 equity weekends).
+User funds only move when the connected wallet signs ERC-20 `approve` + market calls (`deposit`, `borrow`, `repay`, `withdraw`, `supply`, `redeem`, `liquidate`). The market owner can list markets, set oracle delay, and seed USDG liquidity - **not** seize healthy user collateral. Oracles are external AggregatorV3 feeds; stale reads revert when beyond `maxOracleDelay` (default **4 days** for 24/5 equity weekends).
 
 ### End-to-end credit (happy path)
 
@@ -144,21 +144,21 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   autonumber
-  actor Keeper
-  participant Desk as Liquidation desk
+  actor Liquidator
+  participant Desk as Look up / liquidate
   participant Market as BorrowDeskMarket
   participant USDG as USDG
   participant Stock as Collateral token
 
-  Keeper->>Desk: Scan / lookup borrower
+  Liquidator->>Desk: Look up borrower address
   Desk->>Market: accountHealth(borrower)
   alt unhealthy (debt > liq threshold)
-    Keeper->>USDG: approve(market, repay)
-    Keeper->>Market: liquidate(user, token, repayAmount)
-    Market->>USDG: Pull repay from keeper
-    Market->>Stock: Seize collateral + bonus → keeper
+    Liquidator->>USDG: approve(market, repay)
+    Liquidator->>Market: liquidate(user, token, repayAmount)
+    Market->>USDG: Pull repay from liquidator
+    Market->>Stock: Seize collateral + bonus → liquidator
   else healthy
-    Desk-->>Keeper: Cannot liquidate
+    Desk-->>Liquidator: Cannot liquidate
   end
 ```
 
@@ -192,13 +192,15 @@ Charts: TradingView embeds on asset pages.
 
 - Deposit / withdraw Stock Tokens
 - Borrow / repay USDG
-- Accrue interest onchain (~5% APR)
+- Supply / redeem USDG (V2 supply shares)
+- Accrue interest onchain (~5% base · utilization APR on V2)
 - Partial liquidate unhealthy accounts
-- Multi-collateral account health (HF, LTV, borrow power, liq threshold)
+- Multi-collateral account health (HF on a **0–10** UI scale, LTV, borrow power, liq threshold)
 
 ### Desk UX
 
-- Desk tabs: Overview · Borrow · Positions · Markets · Risk · Liquidate · Get started
+- Desk tabs: Overview · Borrow · Fund · Positions · Markets · Protocol · Risk · Look up · Start
+- Fund desk: get stock (swap) · supply USDG · batch deposit+borrow
 - Borrow sheet: LTV slider, liq price, buffer, interest/day
 - Repay receipt: est. principal / interest / days open
 - ⌘K command palette (tickers, desks, actions)
@@ -219,7 +221,7 @@ Public addresses only. **Never commit** private keys or `.env`.
 |---|---|---|
 | **BorrowDeskMarket V2** | [`0x17452DAB5976B770107c126fBC92aD746a3C0200`](https://robinhoodchain.blockscout.com/address/0x17452DAB5976B770107c126fBC92aD746a3C0200) | Live credit market · util APR · [Sourcify exact match](https://repo.sourcify.dev/4663/0x17452DAB5976B770107c126fBC92aD746a3C0200) |
 | **BorrowDeskLens** | [`0x025694b88ddd0a6ffac740df4170b8ea590355cc`](https://robinhoodchain.blockscout.com/address/0x025694b88ddd0a6ffac740df4170b8ea590355cc) | Desk reads · [Sourcify exact match](https://repo.sourcify.dev/4663/0x025694b88ddd0a6ffac740df4170b8ea590355cc) |
-| **Legacy V1** | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) | First proven market · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
+| **Legacy V1** | [`0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d`](https://robinhoodchain.blockscout.com/address/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) | Drained · unused · funds migrated to V2 · [Sourcify](https://repo.sourcify.dev/4663/0x2e4E7E8145E4cCA7E0fEf4737A2489E4E27D9E8d) |
 | **Owner** | `0x1881Dfd2b29536F054AA0b0A4966856290388Cc2` | Market owner (rotate if key compromised) |
 | **USDG** | `0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168` | Global Dollar · 6 decimals |
 | **V2 deploy tx** | [`0xe937fb…dfa0`](https://robinhoodchain.blockscout.com/tx/0xe937fb4b81a7ac7f88e1f8bc586661e06ff296764305ff7fa88a40c91a7edfa0) | Market create |
@@ -235,19 +237,20 @@ Public addresses only. **Never commit** private keys or `.env`.
 | TSLA | `0x322F0929c4625eD5bAd873c95208D54E1c003b2d` | `0x4A1166a659A55625345e9515b32adECea5547C38` |
 | SPY | `0x117cc2133c37B721F49dE2A7a74833232B3B4C0C` | `0x319724394D3A0e3669269846abE664Cd621f9f6A` |
 
-### Proven onchain position (deployer)
+### Proven onchain position (deployer · V2)
 
 | Metric | Value |
 |---|---|
-| Collateral (oracle USD) | ~$0.53 |
-| Debt | **~0.287 USDG** |
-| Pool liquidity | **~5.03 USDG** |
+| Collateral (oracle USD) | ~$1.32 |
+| Debt | **~0.0001 USDG** (dust) |
+| Pool liquidity (idle) | **~4.80 USDG** |
 | Healthy | `true` |
-| Deposited | NVDA + AAPL |
+| Deposited | Multi-collateral (NVDA / AAPL + migrated V1 books) |
+| Health factor (UI) | **10/10** (capped display · raw liq/debt) |
 
 See `MAINNET.md` for the latest snapshot.
 
-**Interest:** ~**5% APR** (`BORROW_RATE_PER_SECOND` in `BorrowDeskMarket.sol`).
+**Interest:** ~**5% base APR** plus utilization-based borrow APR on V2 (`BorrowDeskMarket.sol`).
 
 ---
 
@@ -331,13 +334,16 @@ flowchart TB
 
 ```
 User wallet
-   │  approve + deposit / withdraw / borrow / repay / liquidate / accrue
+   │  approve + deposit / withdraw / borrow / repay / supply / redeem / liquidate / accrue
    ▼
-BorrowDeskMarket
+BorrowDeskMarket V2
    ├── markets[token] → feed, ltvBps, liqBps, bonusBps, listed
    ├── accounts[user] → collateral map, debt principal + index
+   ├── supplyShares / totalSupplyShares / assetsOf
    ├── borrowIndex / lastAccrual / totalDebt / totalUsdgLiquidity
+   ├── utilizationBps / previewBorrowAprBps
    └── accountHealth(user) → collateralUsd, debtUsd, power, liqUsd, healthy
+BorrowDeskLens → batched desk reads
 ```
 
 Design notes live in `contracts/src/BorrowDeskMarket.sol` and `contracts/README.md`.
@@ -369,7 +375,7 @@ Design notes live in `contracts/src/BorrowDeskMarket.sol` and `contracts/README.
 
 1. **Mainnet desk** - 29 feed-backed Stock Token / ETF markets listed live, borrow proven, Reown connect.
 2. **Judge path** - Get started tab: chain 4663 → ETH gas → Stock Tokens → deposit → borrow.
-3. **Liquidity narrative** - grow USDG inventory beyond toy-scale (~$5 today); show pool clearly in UI.
+3. **Liquidity narrative** - grow USDG inventory beyond toy-scale (~$4.80 idle today); show pool clearly in UI.
 4. **Distribution** - Open House demos, RH Chain explorer links, Stock Token holder loops.
 5. **Trust** - rotate compromised deployer key, public addresses in this README, toned security copy.
 
@@ -381,9 +387,9 @@ Design notes live in `contracts/src/BorrowDeskMarket.sol` and `contracts/README.
 |---|---|
 | **Borrow interest** | ~5% APR on outstanding USDG debt (accrues via borrow index) |
 | **Liquidation bonus** | Liquidators repay USDG and seize collateral at configured bonus bps |
-| **Protocol inventory** | Owner-seeded USDG liquidity earns as utilization grows (supply vault later) |
+| **Protocol inventory** | Owner-seeded + public USDG supply shares earn as utilization grows |
 
-No token launch in v1. Primary demo metric today: **healthy borrows against live Stock Token collateral**.
+No token launch. Primary demo metric today: **healthy borrows against live Stock Token collateral**.
 
 ---
 
@@ -395,10 +401,12 @@ No token launch in v1. Primary demo metric today: **healthy borrows against live
 | 1 | Mainnet list NVDA/AAPL/TSLA/SPY + seed USDG + proven borrow | Done |
 | 2 | Desk UI: health, ticket, markets, liquidate, asset pages, TV | Done |
 | 3 | Reown AppKit, LTV slider, repay receipt, desk tabs, ⌘K, oracle strip | Done |
-| Next | Grow pool, ownership rotation, supply shares / vault, event-risk chips | In progress |
-| Later | Utilization-based APR, keepers / bots, BorrowDeskLens multicall, audits | Planned |
+| 4 | V2 market: supply shares, util APR, Fund desk, Lens, Sourcify exact match | Done |
+| 5 | V1 → V2 liquidity + collateral migration · HF /10 UI · borrowdesk.fun | Done |
+| Next | Grow pool, ownership rotation, event-risk chips, liquidation bots | In progress |
+| Later | Audits, larger inventory, more Stock Token bands | Planned |
 
-**Explicit non-goals (v1):** spot trading, issuing Stock Tokens, perps, cross-chain deploy.
+**Explicit non-goals (buildathon):** spot trading as a venue, issuing Stock Tokens, perps, cross-chain deploy.
 
 ---
 
