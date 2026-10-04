@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+node_modules
+.next
+contracts/lib
+contracts/cache
+contracts/out
+contracts/broadcast
+Untitled
+*.tsbuildinfo
+scripts/_build_history.py
