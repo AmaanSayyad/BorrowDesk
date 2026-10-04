@@ -6,7 +6,7 @@ import { getAddress, isAddress, type Address } from "viem";
 import { fetchAccountSnapshot } from "@/hooks/useBorrowerScan";
 import { MAINNET } from "@/lib/deployments";
 import { PROVEN_POSITION } from "@/lib/demand";
-import { formatUsd } from "@/lib/utils";
+import { formatHealthFactor, formatUsd } from "@/lib/utils";
 
 type LookRow = {
   address: Address;
@@ -102,11 +102,7 @@ export function AccountLookup() {
           <Field label="Debt" value={formatUsd(row.debtUsd)} />
           <Field
             label="Health factor"
-            value={
-              !Number.isFinite(row.healthFactor)
-                ? "∞"
-                : row.healthFactor.toFixed(2)
-            }
+            value={formatHealthFactor(row.healthFactor, { compact: true })}
           />
           <Field label="Liq threshold" value={formatUsd(row.liquidationUsd)} />
           <a

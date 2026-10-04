@@ -2,7 +2,7 @@
 
 import { motion, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
-import { clamp, formatUsd } from "@/lib/utils";
+import { clamp, formatHealthFactor, formatUsd, healthFactorScore } from "@/lib/utils";
 
 export function HealthMeter({
   healthFactor,
@@ -17,13 +17,13 @@ export function HealthMeter({
   debtUsd: number;
   borrowPowerUsd: number;
 }) {
-  const finite = Number.isFinite(healthFactor);
-  const hfDisplay = finite ? healthFactor.toFixed(2) : "∞";
-  const hfPct = finite ? clamp((healthFactor / 3) * 100, 8, 100) : 100;
+  const score = debtUsd <= 0 ? 10 : healthFactorScore(healthFactor);
+  const hfDisplay = formatHealthFactor(debtUsd <= 0 ? Infinity : healthFactor);
+  const hfPct = clamp((score / 10) * 100, 8, 100);
   const room = Math.max(0, borrowPowerUsd - debtUsd);
 
   const tone =
-    !finite || healthFactor >= 1.5
+    debtUsd <= 0 || healthFactor >= 1.5 || !Number.isFinite(healthFactor)
       ? "var(--ok)"
       : healthFactor >= 1.1
         ? "var(--warn)"
@@ -139,7 +139,7 @@ export function HealthMeter({
             </svg>
             <div className="relative z-[1] px-3 text-center">
               <div className="text-[10px] font-medium uppercase tracking-[0.16em] text-rh-dim">
-                Health factor
+                Health · /10
               </div>
               <motion.div
                 key={hfDisplay}

@@ -119,7 +119,7 @@ export function useBorrowerScan() {
     }
 
     if (lastErr) {
-      setError("Could not scan borrowers from RPC — try again");
+      setError("Could not scan borrowers from RPC - try again");
       setRows([]);
     }
     setLoading(false);

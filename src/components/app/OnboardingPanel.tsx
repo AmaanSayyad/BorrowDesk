@@ -20,7 +20,7 @@ const STEPS = [
   {
     n: "03",
     title: "Get Stock Tokens",
-    body: "Hold a listed Stock Token (NVDA, AAPL, QQQ, PLTR, … — 29 live markets) in the same wallet.",
+    body: "Hold a listed Stock Token (NVDA, AAPL, QQQ, PLTR, … - 29 live markets) in the same wallet.",
   },
   {
     n: "04",

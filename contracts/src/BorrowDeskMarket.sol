@@ -148,7 +148,7 @@ contract BorrowDeskMarket {
         emit MarketListed(token, priceFeed, ltvBps, liquidationThresholdBps);
     }
 
-    /// @notice Permissionless USDG supply — mints shares against idle + debt assets.
+    /// @notice Permissionless USDG supply - mints shares against idle + debt assets.
     function supply(uint256 assets) external nonReentrant returns (uint256 shares) {
         if (assets == 0) revert ZeroAmount();
         accrue();

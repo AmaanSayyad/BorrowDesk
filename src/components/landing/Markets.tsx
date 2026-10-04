@@ -81,7 +81,7 @@ export function Markets() {
             </h2>
             <p className="mt-4 max-w-6xl text-lg leading-relaxed text-rh-muted sm:text-xl">
               {LISTED_TOKENS.length} feed-backed markets on Robinhood Chain.
-              Featured names up front — search or show all for the full book.
+              Featured names up front - search or show all for the full book.
             </p>
           </div>
           <Link href="/app" className="neon-btn h-11 shrink-0 px-5 text-sm">

@@ -16,7 +16,7 @@ const LEGACY = MAINNET.legacyMarket;
 const MARKET = MAINNET.market;
 
 const JUDGE_KIT = `#!/usr/bin/env bash
-# BorrowDesk judge kit — paste into a shell with cast installed
+# BorrowDesk judge kit - paste into a shell with cast installed
 set -euo pipefail
 RPC="\${RH_RPC_URL:-https://rpc.mainnet.chain.robinhood.com}"
 MARKET="${MARKET}"
@@ -151,7 +151,7 @@ export default function VerifyPage() {
             Judge kit
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-relaxed text-rh-muted">
-            One pasteable script for every onchain claim — Sourcify, pool, debt,
+            One pasteable script for every onchain claim - Sourcify, pool, debt,
             proven health, NVDA bands, last borrow tx.
           </p>
         </div>

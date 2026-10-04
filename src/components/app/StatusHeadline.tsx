@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useOracleMarkets } from "@/hooks/useOracleMarkets";
 import { useBorrowDeskLive } from "@/hooks/useBorrowDeskLive";
 import { usePoolLiquidity } from "@/hooks/usePoolLiquidity";
-import { formatUsd } from "@/lib/utils";
+import { formatHealthFactor, formatUsd } from "@/lib/utils";
 import { TRUST_TIER } from "@/lib/demand";
 
 const MAX_DELAY_MS = 4 * 24 * 60 * 60 * 1000;
@@ -44,12 +44,10 @@ export function StatusHeadline() {
     }
 
     const buffer = Math.max(0, m.liquidationUsd - m.debtUsd);
-    const hf =
-      m.debtUsd <= 0
-        ? "∞"
-        : Number.isFinite(m.healthFactor)
-          ? m.healthFactor.toFixed(2)
-          : "∞";
+    const hf = formatHealthFactor(
+      m.debtUsd <= 0 ? Infinity : m.healthFactor,
+      { compact: true },
+    );
 
     if (stale) {
       return {

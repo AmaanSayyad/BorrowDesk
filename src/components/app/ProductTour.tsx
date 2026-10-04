@@ -147,7 +147,8 @@ function rectToHole(rect: DOMRect): Hole {
     top: Math.max(8, rect.top - PAD),
     left: Math.max(8, rect.left - PAD),
     width: Math.min(rect.width + PAD * 2, window.innerWidth - 16),
-    height: Math.min(rect.height + PAD * 2, window.innerHeight * 0.52),
+    // Cap height so the card still fits; users can scroll the page under the tour.
+    height: Math.min(rect.height + PAD * 2, window.innerHeight * 0.7),
   };
 }
 
@@ -433,6 +434,8 @@ export function ProductTour({
 
   useEffect(() => {
     if (!open) return;
+    // Overlay is pointer-events-none so the page scrolls natively.
+    // When the cursor is over the card, forward wheel/touch to the page.
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") finishRef.current();
       if (event.key === "ArrowRight" || event.key === "Enter") {
@@ -453,13 +456,20 @@ export function ProductTour({
         });
       }
     }
+    function overCard(event: Event) {
+      const card = document.querySelector("[data-tour-card]");
+      return Boolean(card && event.target instanceof Node && card.contains(event.target));
+    }
     function onWheel(event: WheelEvent) {
+      if (!overCard(event)) return;
       window.scrollBy({ top: event.deltaY, left: event.deltaX });
     }
     function onTouchStart(event: TouchEvent) {
+      if (!overCard(event)) return;
       touchY.current = event.touches[0]?.clientY ?? 0;
     }
     function onTouchMove(event: TouchEvent) {
+      if (!overCard(event)) return;
       const y = event.touches[0]?.clientY ?? touchY.current;
       window.scrollBy({ top: touchY.current - y });
       touchY.current = y;
@@ -485,22 +495,18 @@ export function ProductTour({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[90] transition-opacity duration-300",
+        "pointer-events-none fixed inset-0 z-[90] transition-opacity duration-300",
         overlayIn ? "opacity-100" : "opacity-0",
       )}
       role="dialog"
-      aria-modal="true"
+      aria-modal="false"
       aria-labelledby="tour-title"
     >
-      <Spotlight
-        hole={hole}
-        onSkip={finish}
-        transition={moveTransition}
-      />
+      <Spotlight hole={hole} transition={moveTransition} />
 
       <div
         data-tour-card
-        className="absolute z-20 w-[min(21.25rem,calc(100vw-2rem))] rounded-2xl border border-rh-lime/40 bg-[#e8e8e4] p-4 text-[#110e08] shadow-[0_24px_60px_rgb(0_0_0/0.55)]"
+        className="pointer-events-auto absolute z-20 w-[min(21.25rem,calc(100vw-2rem))] rounded-2xl border border-rh-lime/40 bg-[#e8e8e4] p-4 text-[#110e08] shadow-[0_24px_60px_rgb(0_0_0/0.55)]"
         style={{
           top: cardPos.top,
           left: cardPos.left,
@@ -616,11 +622,9 @@ export function ProductTour({
 
 function Spotlight({
   hole,
-  onSkip,
   transition,
 }: {
   hole: Hole | null;
-  onSkip: () => void;
   transition: string;
 }) {
   // Centered fallback hole when no target (intro / loading)
@@ -635,7 +639,7 @@ function Spotlight({
 
   return (
     <>
-      {/* Smooth moving cutout via giant box-shadow */}
+      {/* Visual only - pointer-events-none so the page stays scrollable */}
       <div
         aria-hidden
         className="pointer-events-none absolute z-[1] rounded-2xl"
@@ -648,47 +652,6 @@ function Spotlight({
           transition,
         }}
       />
-
-      {/* Clickable dim regions that morph with the hole */}
-      <button
-        type="button"
-        aria-label="Skip guide"
-        className="absolute left-0 right-0 top-0 z-[2] bg-transparent"
-        style={{ height: Math.max(0, active.top), transition }}
-        onClick={onSkip}
-      />
-      <button
-        type="button"
-        aria-label="Skip guide"
-        className="absolute left-0 z-[2] bg-transparent"
-        style={{
-          top: active.top,
-          width: Math.max(0, active.left),
-          height: active.height,
-          transition,
-        }}
-        onClick={onSkip}
-      />
-      <button
-        type="button"
-        aria-label="Skip guide"
-        className="absolute right-0 z-[2] bg-transparent"
-        style={{
-          top: active.top,
-          left: active.left + active.width,
-          height: active.height,
-          transition,
-        }}
-        onClick={onSkip}
-      />
-      <button
-        type="button"
-        aria-label="Skip guide"
-        className="absolute bottom-0 left-0 right-0 z-[2] bg-transparent"
-        style={{ top: active.top + active.height, transition }}
-        onClick={onSkip}
-      />
-
       <div
         className="tour-spotlight pointer-events-none absolute z-[3] rounded-2xl ring-2 ring-[#ccff00]"
         style={{

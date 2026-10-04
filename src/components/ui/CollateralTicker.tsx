@@ -41,7 +41,7 @@ export function CollateralTicker({
     };
   }, []);
 
-  // Two copies for seamless marquee (featured only — keeps the strip readable)
+  // Two copies for seamless marquee (featured only - keeps the strip readable)
   const items = Array.from({ length: 2 }, () => FEATURED_TOKENS).flat();
 
   return (

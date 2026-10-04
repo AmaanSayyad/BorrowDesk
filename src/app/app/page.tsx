@@ -131,7 +131,7 @@ function AppBody() {
         </div>
 
         <div className="desk-split mt-4">
-          {/* Left: work surface — status, desks, ticket */}
+          {/* Left: work surface - status, desks, ticket */}
           <div className="desk-main">
             <StatusHeadline />
 

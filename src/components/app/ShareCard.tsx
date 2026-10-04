@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { useBorrowDeskLive } from "@/hooks/useBorrowDeskLive";
-import { formatUsd } from "@/lib/utils";
+import { formatHealthFactor, formatUsd } from "@/lib/utils";
 
 export function ShareCard() {
   const live = useBorrowDeskLive();
@@ -44,7 +44,7 @@ export function ShareCard() {
     ctx.fillText(`Debt: ${formatUsd(live.liveMetrics.debtUsd)}`, 40, 190);
     ctx.fillText(`LTV: ${(live.liveMetrics.ltv * 100).toFixed(1)}%`, 40, 230);
     ctx.fillText(
-      `Health Factor: ${live.liveMetrics.healthFactor.toFixed(2)}`,
+      `Health Factor: ${formatHealthFactor(live.liveMetrics.healthFactor, { compact: true })}`,
       40,
       270
     );
@@ -123,7 +123,9 @@ export function ShareCard() {
                     : "text-ok"
               }`}
             >
-              {live.liveMetrics.healthFactor.toFixed(2)}
+              {formatHealthFactor(live.liveMetrics.healthFactor, {
+                compact: true,
+              })}
             </span>
           </div>
           <div className="flex justify-between">

@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useOracleMarkets } from "@/hooks/useOracleMarkets";
 import { useBorrowDeskLive } from "@/hooks/useBorrowDeskLive";
 import { usePoolLiquidity } from "@/hooks/usePoolLiquidity";
-import { cn } from "@/lib/utils";
+import { cn, formatHealthFactor } from "@/lib/utils";
 
 const MAX_DELAY_MS = 4 * 24 * 60 * 60 * 1000;
 
@@ -61,7 +61,7 @@ export function SafetyChrome() {
           : m.debtUsd <= 0
             ? "No debt"
             : m.healthy
-              ? `HF ${Number.isFinite(m.healthFactor) ? m.healthFactor.toFixed(2) : "∞"}`
+              ? `HF ${formatHealthFactor(m.healthFactor, { compact: true })}`
               : "Below liq band",
         ok: healthyOk,
         warn: healthyWarn,

@@ -105,17 +105,20 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={openConnect}
-              className="neon-btn hidden h-10 items-center px-5 text-sm sm:inline-flex"
+              className="neon-btn hidden h-10 items-center px-5 text-sm text-rh-on-lime sm:inline-flex"
             >
               Connect
             </button>
           )}
-          <Link
-            href="/app"
-            className="neon-btn hidden h-10 items-center px-5 text-sm md:inline-flex"
-          >
-            {onApp ? "Open line" : "Launch"}
-          </Link>
+          {!onApp && (
+            <Link
+              href="/app"
+              className="neon-btn hidden h-10 items-center px-5 text-sm md:inline-flex !text-[#110e08]"
+              style={{ color: "#110e08" }}
+            >
+              Launch
+            </Link>
+          )}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Menu"}
@@ -173,13 +176,16 @@ export function SiteHeader() {
             >
               {isConnected ? short : "Connect wallet"}
             </button>
-            <Link
-              href="/app"
-              onClick={() => setOpen(false)}
-              className="mt-3 inline-flex h-12 items-center justify-center rounded-full bg-rh-on-lime text-rh-lime"
-            >
-              Launch app
-            </Link>
+            {!onApp && (
+              <Link
+                href="/app"
+                onClick={() => setOpen(false)}
+                className="mt-3 inline-flex h-12 items-center justify-center rounded-full bg-black text-[17px] font-medium !text-white"
+                style={{ color: "#ffffff" }}
+              >
+                Launch app
+              </Link>
+            )}
           </nav>
         </div>
       )}

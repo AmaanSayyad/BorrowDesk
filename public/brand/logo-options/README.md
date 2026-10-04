@@ -1,6 +1,6 @@
 # BorrowDesk logo options
 
-Pick a number (1–10). Reply with e.g. “use logo 5” and it will be set as the site mark.
+Pick a number (1-10). Reply with e.g. “use logo 5” and it will be set as the site mark.
 
 | # | File | Idea |
 |---|------|------|

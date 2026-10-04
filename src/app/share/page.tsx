@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { fetchAccountSnapshot } from "@/hooks/useBorrowerScan";
-import { formatUsd } from "@/lib/utils";
+import { formatHealthFactor, formatUsd } from "@/lib/utils";
 import type { Address } from "viem";
 
 function ShareContent() {
@@ -108,7 +108,7 @@ function ShareContent() {
                     : "text-ok"
               }`}
             >
-              {snapshot.healthFactor.toFixed(2)}
+              {formatHealthFactor(snapshot.healthFactor, { compact: true })}
             </div>
           </div>
 

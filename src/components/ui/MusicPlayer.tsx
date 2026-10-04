@@ -347,7 +347,7 @@ export function MusicPlayer() {
       audio.removeEventListener("canplay", canplay);
       for (const ev of events) window.removeEventListener(ev, unlock, opts);
       document.removeEventListener("visibilitychange", onVisible);
-      // Leaving the landing page — never keep playing in /app or elsewhere
+      // Leaving the landing page - never keep playing in /app or elsewhere
       stopSharedMusic();
       setPlaying(false);
       startedRef.current = false;

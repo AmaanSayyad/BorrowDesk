@@ -15,7 +15,7 @@ import { usePrices } from "@/hooks/usePrices";
 import { useWalletModal } from "@/hooks/useWalletModal";
 import { LISTED_TOKENS, STOCK_TOKENS, getToken } from "@/lib/tokens";
 import { MAINNET } from "@/lib/deployments";
-import { formatToken, formatUsd } from "@/lib/utils";
+import { formatHealthFactor, formatToken, formatUsd } from "@/lib/utils";
 
 export default function AssetPage({
   params,
@@ -254,9 +254,9 @@ export default function AssetPage({
                 label="Health factor"
                 value={
                   live.ready
-                    ? Number.isFinite(live.liveMetrics.healthFactor)
-                      ? live.liveMetrics.healthFactor.toFixed(2)
-                      : "∞"
+                    ? formatHealthFactor(live.liveMetrics.healthFactor, {
+                        compact: true,
+                      })
                     : "-"
                 }
                 accent

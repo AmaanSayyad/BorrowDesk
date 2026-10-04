@@ -77,7 +77,7 @@ export function stepLocationMatches(
 }
 
 /**
- * Judge / product guide — OpenGap-style spotlight, BorrowDesk narrative.
+ * Judge / product guide - OpenGap-style spotlight, BorrowDesk narrative.
  * Kept short: desk → ticket → proof.
  */
 export const TOUR_STEPS: TourStep[] = [
@@ -93,7 +93,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "safety",
     phase: "desk",
     title: "Three checks, always on",
-    body: "Fresh oracle · Healthy after · Pool can fund. They stay visible before every ticket — you never borrow blind.",
+    body: "Fresh oracle · Healthy after · Pool can fund. They stay visible before every ticket - you never borrow blind.",
     target: "safety",
     desk: "overview",
   },
@@ -101,7 +101,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "desks",
     phase: "desk",
     title: "Same book, nine views",
-    body: "Overview through Get started. Switch desks anytime — your wallet position does not change.",
+    body: "Overview through Get started. Switch desks anytime - your wallet position does not change.",
     target: "desks",
     desk: "overview",
   },
@@ -109,7 +109,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "search",
     phase: "desk",
     title: "Search anything · ⌘K",
-    body: "Jump to desks, tickers, deposit, borrow, supply, or the guide. Type NVDA or markets — no hunting through tabs.",
+    body: "Jump to desks, tickers, deposit, borrow, supply, or the guide. Type NVDA or markets - no hunting through tabs.",
     target: "search",
     desk: "overview",
     openSearch: true,
@@ -128,7 +128,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "ticket",
     phase: "ticket",
     title: "Deposit · Borrow · Repay",
-    body: "Pick NVDA (or any listed name), set an amount, review liq price and health after — then Confirm & sign.",
+    body: "Pick NVDA (or any listed name), set an amount, review liq price and health after - then Confirm & sign.",
     target: "ticket",
     desk: "borrow",
     ticket: "borrow",
@@ -156,7 +156,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "protocol",
     phase: "proof",
     title: "Pool cash is visible",
-    body: "Idle USDG, protocol debt, utilisation. The solvency view judges ask for — nothing hidden behind a slide.",
+    body: "Idle USDG, protocol debt, utilisation. The solvency view judges ask for - nothing hidden behind a slide.",
     target: "protocol",
     desk: "protocol",
   },
@@ -164,7 +164,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "lookup",
     phase: "proof",
     title: "Look up any address",
-    body: "No wallet needed. Pull accountHealth for any book — try the proven deployer position for live mainnet debt.",
+    body: "No wallet needed. Pull accountHealth for any book - try the proven deployer position for live mainnet debt.",
     target: "lookup",
     desk: "lookup",
     cta: "Connect wallet",
@@ -203,7 +203,7 @@ export const TOUR_STEPS: TourStep[] = [
     id: "verify",
     phase: "proof",
     title: "Trust the chain",
-    body: "One cast command per claim — or ./script/verify-claims.sh. Manifest at deployments/robinhood.json.",
+    body: "One cast command per claim - or ./script/verify-claims.sh. Manifest at deployments/robinhood.json.",
     target: "verify",
     href: "/verify",
     cta: "Done",

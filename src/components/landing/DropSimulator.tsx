@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { formatHealthFactor } from "@/lib/utils";
 
 /** Interactive keep-stocks stress: what happens to HF when collateral marks drop. */
 export function DropSimulator() {
@@ -94,13 +95,7 @@ export function DropSimulator() {
               />
               <Metric
                 label="Health factor"
-                value={
-                  !Number.isFinite(sim.hf)
-                    ? "∞"
-                    : sim.hf > 9
-                      ? ">9"
-                      : sim.hf.toFixed(2)
-                }
+                value={formatHealthFactor(sim.hf, { compact: true })}
                 tone={
                   sim.liquidatable
                     ? "danger"

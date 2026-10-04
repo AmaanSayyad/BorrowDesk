@@ -58,7 +58,7 @@ export function Hero() {
             className="mb-8 max-w-xl text-base leading-relaxed text-white/70"
           >
             Stock-token USDG credit with liquidation math visible before you
-            sign — live on Robinhood Chain.
+            sign - live on Robinhood Chain.
           </motion.p>
 
           <motion.div
