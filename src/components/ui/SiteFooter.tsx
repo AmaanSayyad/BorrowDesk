@@ -37,6 +37,11 @@ const PLATFORM: FooterLink[] = [
     external: true,
   },
   {
+    href: MAINNET.demoVideo,
+    label: "Demo + pitch video",
+    external: true,
+  },
+  {
     href: "https://github.com/AmaanSayyad/BorrowDesk",
     label: "GitHub",
     external: true,
@@ -96,6 +101,11 @@ const COMPANY: FooterLink[] = [
   {
     href: MAINNET.pitchDeck,
     label: "Pitch deck",
+    external: true,
+  },
+  {
+    href: MAINNET.demoVideo,
+    label: "Demo + pitch video",
     external: true,
   },
   {
@@ -244,6 +254,15 @@ export function SiteFooter() {
                 style={{ color: "#CCFF00" }}
               >
                 Pitch deck
+              </a>
+              <a
+                href={MAINNET.demoVideo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-full bg-[#110e08] px-3 py-1.5 text-[13px] font-medium ring-1 ring-black/25"
+                style={{ color: "#CCFF00" }}
+              >
+                Demo video
               </a>
               <a
                 href="https://github.com/AmaanSayyad/BorrowDesk"

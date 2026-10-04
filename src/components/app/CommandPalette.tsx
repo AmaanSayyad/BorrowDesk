@@ -261,6 +261,15 @@ export function CommandPalette() {
         run: () => window.open(MAINNET.pitchDeck, "_blank", "noopener,noreferrer"),
       },
       {
+        id: "demo-video",
+        label: "Demo + pitch video",
+        hint: "YouTube walkthrough",
+        group: "Links",
+        keywords: "demo video youtube pitch recording",
+        icon: <IconBox>▶</IconBox>,
+        run: () => window.open(MAINNET.demoVideo, "_blank", "noopener,noreferrer"),
+      },
+      {
         id: "verify-page",
         label: "Verify claims",
         hint: "Onchain proof page",

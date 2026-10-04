@@ -17,6 +17,7 @@ export const MAINNET = {
     "0x025694b88DDd0A6ffaC740df4170B8EA590355cc") as `0x${string}`,
   pitchDeck:
     "https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f",
+  demoVideo: "https://youtu.be/fCIIUwtG35g",
   feeds: {
     NVDA: "0x379EC4f7C378F34a1B47E4F3cbeBCbAC3E8E9F15",
     AAPL: "0x6B22A786bAa607d76728168703a39Ea9C99f2cD0",
