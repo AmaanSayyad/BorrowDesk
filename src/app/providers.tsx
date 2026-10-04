@@ -22,8 +22,8 @@ createAppKit({
     name: "BorrowDesk",
     description:
       "Keep your Stock Tokens. Borrow USDG on Robinhood Chain.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://borrowdesk.app",
-    icons: ["/brand/borrowdesk-mark.jpg"],
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://borrowdesk.fun",
+    icons: ["https://borrowdesk.fun/brand/borrowdesk-mark.jpg"],
   },
   features: {
     analytics: true,

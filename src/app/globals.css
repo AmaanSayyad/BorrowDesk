@@ -223,6 +223,8 @@ a {
   color: #fff;
 }
 
+/* Keep button chrome in @layer components so utilities like `hidden` / `sm:inline-flex` win. */
+@layer components {
 .neon-btn,
 .rh-pill-primary {
   display: inline-flex;
@@ -272,6 +274,7 @@ a {
 .ghost-btn:hover:not(:disabled) {
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.04);
+}
 }
 
 .field {

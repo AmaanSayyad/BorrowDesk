@@ -4,18 +4,21 @@ import { MusicRouteGuard } from "@/components/ui/MusicRouteGuard";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://borrowdesk.fun",
+  ),
   title: "BorrowDesk - Borrow against Stock Tokens",
   description:
     "Keep your Stock Tokens. Unlock USDG liquidity on Robinhood Chain. Built for Arbitrum Open House Singapore.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/brand/borrowdesk-mark.jpg", sizes: "1024x1024", type: "image/jpeg" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon.png", sizes: "256x256", type: "image/png" },
+      { url: "/favicon.ico", sizes: "48x48" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.ico",
+    shortcut: "/favicon-32.png",
   },
   openGraph: {
     title: "BorrowDesk - Borrow against Stock Tokens",

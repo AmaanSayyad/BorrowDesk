@@ -37,7 +37,7 @@ export function SiteHeader() {
       >
         <Link
           href="/"
-          className="flex min-w-0 items-center gap-2.5"
+          className="flex shrink-0 items-center gap-2.5"
           onClick={() => setOpen(false)}
         >
           <Image
@@ -48,7 +48,7 @@ export function SiteHeader() {
             className="rounded-[7px]"
             priority
           />
-          <span className="truncate text-[15px] font-medium text-white/90">
+          <span className="shrink-0 text-[15px] font-medium text-white/90">
             BorrowDesk
           </span>
         </Link>

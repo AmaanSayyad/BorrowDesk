@@ -19,7 +19,7 @@ export function HealthMeter({
 }) {
   const finite = Number.isFinite(healthFactor);
   const hfDisplay = finite ? healthFactor.toFixed(2) : "∞";
-  const hfPct = finite ? clamp((healthFactor / 3) * 100, 6, 100) : 100;
+  const hfPct = finite ? clamp((healthFactor / 3) * 100, 8, 100) : 100;
   const room = Math.max(0, borrowPowerUsd - debtUsd);
 
   const tone =
@@ -38,7 +38,20 @@ export function HealthMeter({
           ? "Watch"
           : "At risk";
 
-  const radius = 44;
+  const hint =
+    debtUsd <= 0
+      ? "No open borrow"
+      : healthFactor >= 1.5
+        ? "Comfortable buffer"
+        : healthFactor >= 1.1
+          ? "Buffer thinning"
+          : "Near liquidation";
+
+  // viewBox 144 → radius 56 → thicker, larger ring
+  const size = 144;
+  const center = size / 2;
+  const radius = 56;
+  const stroke = 11;
   const circumference = 2 * Math.PI * radius;
   const progress = useSpring(hfPct / 100, { stiffness: 90, damping: 18 });
   const dashOffset = useTransform(progress, (p) => circumference * (1 - p));
@@ -49,10 +62,10 @@ export function HealthMeter({
 
   return (
     <div data-tour="health" className="panel panel-tight rounded-2xl">
-      <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
-        <div>
+      <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center md:gap-8">
+        <div className="min-w-0">
           <div className="section-kicker">Position</div>
-          <div className="mt-1.5 flex flex-wrap items-end gap-2.5">
+          <div className="mt-2 flex flex-wrap items-end gap-3">
             <motion.div
               key={formatUsd(collateralUsd)}
               initial={{ opacity: 0.4, y: 6 }}
@@ -66,7 +79,7 @@ export function HealthMeter({
               key={status}
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="mb-1 chip"
+              className="mb-1.5 chip text-xs"
               style={{
                 background: `color-mix(in srgb, ${tone} 18%, black)`,
                 color: tone,
@@ -75,55 +88,73 @@ export function HealthMeter({
               {status}
             </motion.div>
           </div>
-          <p className="mt-1 text-xs text-rh-muted">
-            Collateral · health factor {hfDisplay}
-          </p>
+          <p className="mt-1.5 text-sm text-rh-muted">Collateral value</p>
 
-          <div className="mt-4 grid grid-cols-3 gap-1.5">
+          <div className="mt-5 grid grid-cols-3 gap-2">
             <Stat label="Debt" value={formatUsd(debtUsd)} accent />
             <Stat label="Borrow room" value={formatUsd(room)} />
             <Stat label="LTV" value={`${(ltv * 100).toFixed(0)}%`} />
           </div>
         </div>
 
-        <div className="flex justify-center md:justify-end">
-          <div className="relative grid h-[7.5rem] w-[7.5rem] place-items-center">
+        <div className="flex flex-col items-center justify-center md:items-end">
+          <div
+            className="relative grid h-[11.5rem] w-[11.5rem] place-items-center sm:h-[12.75rem] sm:w-[12.75rem]"
+            style={{
+              filter: `drop-shadow(0 0 22px color-mix(in srgb, ${tone} 40%, transparent))`,
+            }}
+          >
             <svg
-              viewBox="0 0 112 112"
+              viewBox={`0 0 ${size} ${size}`}
               className="absolute inset-0 h-full w-full -rotate-90"
               aria-hidden
             >
               <circle
-                cx="56"
-                cy="56"
+                cx={center}
+                cy={center}
                 r={radius}
                 fill="none"
-                stroke="#222"
-                strokeWidth="9"
+                stroke="#1c1c1c"
+                strokeWidth={stroke}
+              />
+              <circle
+                cx={center}
+                cy={center}
+                r={radius}
+                fill="none"
+                stroke={`color-mix(in srgb, ${tone} 16%, transparent)`}
+                strokeWidth={stroke + 6}
               />
               <motion.circle
-                cx="56"
-                cy="56"
+                cx={center}
+                cy={center}
                 r={radius}
                 fill="none"
                 stroke={tone}
-                strokeWidth="9"
+                strokeWidth={stroke}
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 style={{ strokeDashoffset: dashOffset }}
               />
             </svg>
-            <div className="relative z-[1] text-center">
+            <div className="relative z-[1] px-3 text-center">
+              <div className="text-[10px] font-medium uppercase tracking-[0.16em] text-rh-dim">
+                Health factor
+              </div>
               <motion.div
                 key={hfDisplay}
                 initial={{ opacity: 0.35, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-2xl font-medium tabular text-white"
+                className="mt-1 text-[2.4rem] font-medium leading-none tabular tracking-tight text-white sm:text-[2.75rem]"
+                style={{ color: tone === "var(--ok)" ? "#fff" : tone }}
               >
                 {hfDisplay}
               </motion.div>
-              <div className="text-[10px] font-medium uppercase tracking-wide text-rh-dim">
-                Health
+              <div
+                className="mt-2.5 text-xs font-medium"
+                style={{ color: tone }}
+              >
+                {hint}
               </div>
             </div>
           </div>
@@ -143,7 +174,7 @@ function Stat({
   accent?: boolean;
 }) {
   return (
-    <div className="rounded-lg bg-black px-2.5 py-2">
+    <div className="rounded-xl bg-black px-3 py-2.5">
       <div className="text-[10px] font-medium uppercase tracking-[0.12em] text-rh-dim">
         {label}
       </div>
@@ -152,7 +183,7 @@ function Stat({
         initial={{ opacity: 0.4, y: 3 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
-        className={`mt-0.5 text-sm font-medium tabular ${
+        className={`mt-1 text-[0.95rem] font-medium tabular ${
           accent ? "text-rh-lime" : "text-white"
         }`}
       >
