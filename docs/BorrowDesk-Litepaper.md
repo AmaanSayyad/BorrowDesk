@@ -249,7 +249,7 @@ oracle OK       = price > 0 AND age ≤ 4 days (default)
 | Listed markets | 29 Stock Token / ETF feeds |
 | App | https://borrowdesk.fun |
 | Pitch | [Chronicle](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f) |
-| Demo | https://youtu.be/fCIIUwtG35g |
+| Demo | https://youtu.be/KuaS7UGdRvY |
 | Hackathon | [Arbitrum Open House Singapore](https://arbitrum-singapore.hackquest.io/buildathons/Arbitrum-Open-House-Singapore-Online-Buildathon) [20] |
 
 ---

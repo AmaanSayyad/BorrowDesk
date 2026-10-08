@@ -31,7 +31,7 @@
 - USDG: `0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168` (**6 decimals**)
 - App: [https://borrowdesk.fun](https://borrowdesk.fun)
 - Pitch deck: [Chronicle share](https://app.chroniclehq.com/share/0f55cc23-897b-4a17-9ae9-c430e7e7eadb/50e19e22-0cd9-437e-afc0-9cab97129f3f)
-- Demo + pitch video: [YouTube](https://youtu.be/fCIIUwtG35g)
+- Demo + pitch video: [YouTube](https://youtu.be/KuaS7UGdRvY)
 
 ## App
 
